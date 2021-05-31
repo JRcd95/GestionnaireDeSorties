@@ -13,6 +13,10 @@
                         <a class="navLink" href="#" title="Mon profil">Mon profil</a>
                         <a class="navLink" href="{{path('app_logout')}}" title="Logout">Se déconnecter</a>
                     </div>
+                {% else %}
+                    <div class="menu-lien">
+                        <a class="navLink" href="{{path('app_login')}}" title="Login">Se Connecter</a>
+                    </div>
                 {% endif %}
             </div>
         </div>
