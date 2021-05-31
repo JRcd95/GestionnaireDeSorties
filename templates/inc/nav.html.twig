@@ -10,7 +10,7 @@
                         <a class="navLink" href="#" title="Villes">Villes</a>
                         <a class="navLink" href="#" title="Campus">Campus</a>
                         <a class="navLink" href="{{path('main_home')}}" title="Home">Accueil</a>
-                        <a class="navLink" href="#" title="Mon profil">Mon profil</a>
+                        <a class="navLink" href="{{path('participant_edit', {'id': app.user.id})}}" title="Mon profil">Mon profil</a>
                         <a class="navLink" href="{{path('app_logout')}}" title="Logout">Se déconnecter</a>
                     </div>
                 {% else %}
