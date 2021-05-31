@@ -2,12 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            <link href="../assets/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-            <linK rel="stylesheet" href="../assets/css/style.css">
+            <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+            <linK rel="stylesheet" href="{{ asset('css/style.css') }}">
             <link rel="icon" href="{{ asset('img/logo.jpg') }}">
         {% endblock %}
 
@@ -15,13 +16,35 @@
     </head>
     <body>
         <header>
-            {% include ('inc/nav.html.twig') %}
+            <nav>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <h1><a class ="lien" href="{{ path('main_home') }}"><img class="logo" src="{{ asset('img/logo.jpg') }}" alt="Sortir.com">Sortir.com</a></h1>
+                        </div>
+                        <div class="col">
+                            {% if app.user %}
+                                <div class="menu-lien">
+                                    <a class="navLink" href="#" title="Villes">Villes</a>
+                                    <a class="navLink" href="#" title="Campus">Campus</a>
+                                    <a class="navLink" href="{{path('main_home')}}" title="Home">Accueil</a>
+                                    <a class="navLink" href="{{path('participant_edit', {'id': app.user.id})}}" title="Mon profil">Mon profil</a>
+                                    <a class="navLink" href="{{path('app_logout')}}" title="Logout">Se déconnecter</a>
+                                </div>
+                            {% else %}
+                                <div class="menu-lien">
+                                    <a class="navLink" href="{{path('app_login')}}" title="Login">Se Connecter</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </header>
         {% block body %}
-
         {% endblock %}
         {% block javascripts %}
-            <script src="../assets/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+            <script src="{{ asset('js/bootstrap.bundle.min.js') }}" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
         {% endblock %}
     </body>
 </html>

@@ -1,0 +1,69 @@
+.lien {
+    color: #144A7F;
+}
+.logo {
+    width: 62px;
+    height: 62px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.navLink {
+    color: #144A7F;
+    margin-right: 20px;
+    font-size: x-large;
+}
+.menu-lien {
+    margin-top: 20px;
+}
+.btn  {
+    background: #144A7F;
+    color: #FFFFFF;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+.btn:hover{
+    background: #FFFFFF;
+    color: #144A7F;
+    border-color: #144A7F;
+}
+.card{
+
+    width: 40%;
+    min-height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+main{
+    border: 2px solid #E0E0E0;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 2px 2px #B6B6B6;
+    width: 30%;
+    min-height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+main h2{
+    color: #144A7F;
+}
+.box-form{
+    width: 38%;
+
+    min-height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+label{
+    color: #343a40;
+}
+input{
+    border: 1px solid #144A7F;
+}

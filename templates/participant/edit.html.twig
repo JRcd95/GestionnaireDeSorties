@@ -5,11 +5,35 @@
 {% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_widget(form)}}
-
-         <button type="submit" class="btn">Modifier</button>
-    {{ form_end(form) }}
+<main>
+    <div class="row">
+        <div class="col">
+            <div class="text-center ">
+                <h2>Modifier mon profil</h2>
+            </div>
+            <div class="box-form">
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_row(form.pseudo) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.nom)}}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.prenom) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.email) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.telephone) }}
+                </div>
+                <button type="submit" class="btn">Modifier</button>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</main>
 {% endblock %}
 
 

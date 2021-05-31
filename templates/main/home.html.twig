@@ -3,5 +3,11 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1>vous êtes connecté {{ app.user.pseudo }}</h1>
+
+    {% if app.user %}
+        <h1>vous êtes connecté {{ app.user.pseudo }}</h1>
+    {% else %}
+        <h1>Personne n'est connecté</h1>
+    {% endif %}
+
 {% endblock %}
