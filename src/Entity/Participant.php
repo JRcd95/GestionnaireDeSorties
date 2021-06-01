@@ -77,9 +77,15 @@ class Participant implements UserInterface
      */
     private $sortiesOrganisees;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Sortie::class, mappedBy="participants")
+     */
+    private $sorties;
+
     public function __construct()
     {
         $this->sortiesOrganisees = new ArrayCollection();
+        $this->sorties = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -272,6 +278,33 @@ class Participant implements UserInterface
             if ($sortiesOrganisee->getOrganisateur() === $this) {
                 $sortiesOrganisee->setOrganisateur(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Sortie[]
+     */
+    public function getSorties(): Collection
+    {
+        return $this->sorties;
+    }
+
+    public function addSorty(Sortie $sorty): self
+    {
+        if (!$this->sorties->contains($sorty)) {
+            $this->sorties[] = $sorty;
+            $sorty->addParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSorty(Sortie $sorty): self
+    {
+        if ($this->sorties->removeElement($sorty)) {
+            $sorty->removeParticipant($this);
         }
 
         return $this;
