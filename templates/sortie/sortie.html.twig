@@ -1,15 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SortieController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<h1>les sorties, c'est par ici !</h1>
+<div class="container">
+    <div class="participantDate">
+        <h4>Date du jour : {{ "now"|date("d/m/Y")}}</h4>
+        <h4>Participant : {{ app.user.pseudo }}</h4>
+    </div>
 
-    {% for sortie in sorties %}
-        <article>
-            <div>
-                {{ sortie.nomSortie }}
-            </div>
-        </article>
-    {% endfor %}
+    <div class="formFiltre">
+        <h5>Filtrer les sorties</h5>
+    </div>
+
+    <div class="listeSorties">
+        <h5>Liste des sorties :</h5>
+            <table class="tabSorties">
+                <tr>
+                    <th>Nom de la sortie</th>
+                    <th>Date de la sortie</th>
+                    <th>Clôture</th>
+                    <th>Inscrits/Places</th>
+                    <th>Etat</th>
+                    <th>Inscrit</th>
+                    <th>Organisateur</th>
+                    <th>Action</th>
+                </tr>
+                {% for sortie in sorties %}
+                    <tr>
+                        <td class="tSortie">{{ sortie.nomSortie }}</td>
+                        <td>{{ sortie.dateHeureDebut|date("d/m/Y") }}</td>
+                        <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
+                        <td>{{ sortie.participants|length}}/{{ sortie.nbInscriptionMax }}</td>
+                        <td>ND</td> <!--todo lien entité Etat-->
+                        <td>ND</td> <!--todo savoir si je suis inscrit-->
+                        <td>{{ sortie.organisateur.pseudo }}</td>
+                        <td>ND</td> <!--todo lien vers les actions-->
+                    </tr>
+                {% endfor %}
+            </table>
+    </div>
+    <div class="creationSortie">
+        <button class="btn btn-lg btn-primary" type="submit">Créer une sortie</button>
+    </div>
+</div>
 {% endblock %}

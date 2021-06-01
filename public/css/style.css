@@ -10,11 +10,12 @@
 }
 .navLink {
     color: #144A7F;
-    margin-right: 20px;
     font-size: x-large;
+    margin-right: 15px;
 }
 .menu-lien {
     margin-top: 20px;
+    float: right;
 }
 .btn  {
     background: #144A7F;
@@ -66,4 +67,14 @@ label{
 }
 input{
     border: 1px solid #144A7F;
+}
+
+.participantDate {
+    float: right;
+}
+.tabSorties{
+    border: 2px solid #144A7F;
+}
+.tSortie {
+    background-color: #E0E0E0;
 }
