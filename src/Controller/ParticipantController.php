@@ -31,7 +31,7 @@ class ParticipantController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
             $entityManager->flush();
-            return $this->redirectToRoute('main_home');
+            return $this->redirectToRoute('sortie');
         }
 
         return $this->render('participant/edit.html.twig', [
