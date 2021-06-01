@@ -8,42 +8,83 @@
         <h4>Date du jour : {{ "now"|date("d/m/Y")}}</h4>
         <h4>Participant : {{ app.user.pseudo }}</h4>
     </div>
-
+</div>
+<div class="container">
     <div class="formFiltre">
         <h5>Filtrer les sorties</h5>
         {{form_start(searchForm) }}
+        <div class="row">
+            <div class="col">
+                <div class="campusSearch">
+                    {{ form_row(searchForm.campusSearch) }}
+                </div>
+                <div class="campusSearch">
+                    {{ form_row(searchForm.recherche) }}
+                </div>
+                <div class="campusSearch">
+                    <div class="row">
+                        <div class="col">
+                            {{ form_row(searchForm.dateDebutSearch) }}
+                        </div>
+                        <div class="col">
+                            {{ form_row(searchForm.dateFinSearch) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="sortieSearch">
+                    {{ form_row(searchForm.sortieOrganisee) }}
+                </div>
+                <div class="sortieSearch">
+                    {{ form_row(searchForm.sortieInscrit) }}
+                </div>
+                <div class="sortieSearch">
+                    {{ form_row(searchForm.sortieNonInscrit) }}
+                </div>
+                <div class="sortieSearch">
+                    {{ form_row(searchForm.sortiePassee) }}
+                </div>
+            </div>
+            <div class="col">
+                <button class="btn btn-lg btn-primary" type="submit">Rechercher</button>
+            </div>
+        </div>
         {{form_end(searchForm) }}
     </div>
-
-    <div class="listeSorties">
-        <h5>Liste des sorties :</h5>
-            <table class="tabSorties">
-                <tr class="trSortie">
-                    <th>Nom de la sortie</th>
-                    <th>Date de la sortie</th>
-                    <th>Clôture</th>
-                    <th>Inscrits/Places</th>
-                    <th>Etat</th>
-                    <th>Inscrit</th>
-                    <th>Organisateur</th>
-                    <th>Action</th>
-                </tr>
-                {% for sortie in sorties %}
-                    <tr class="tSortie">
-                        <td>{{ sortie.nomSortie }}</td>
-                        <td>{{ sortie.dateHeureDebut|format_datetime('short', 'short', locale='fr') }}</td>
-                        <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
-                        <td>{{ sortie.participants|length}}/{{ sortie.nbInscriptionMax }}</td>
-                        <td>{{ sortie.etat.libelle }}</td>
-                        <td>ND</td> <!--todo savoir si je suis inscrit-->
-                        <td>{{ sortie.organisateur.pseudo }}</td>
-                        <td>ND</td> <!--todo lien vers les actions-->
+</div>
+<div class="container">
+    <div class="row">
+        <div class="listeSorties">
+            <h5>Liste des sorties :</h5>
+                <table class="tabSorties">
+                    <tr class="trSortie">
+                        <th>Nom de la sortie</th>
+                        <th>Date de la sortie</th>
+                        <th>Clôture</th>
+                        <th>Inscrits/Places</th>
+                        <th>Etat</th>
+                        <th>Inscrit</th>
+                        <th>Organisateur</th>
+                        <th>Action</th>
                     </tr>
-                {% endfor %}
-            </table>
-    </div>
-    <div class="creationSortie">
-        <button class="btn btn-lg btn-primary" type="submit">Créer une sortie</button>
+                    {% for sortie in sorties %}
+                        <tr class="tSortie">
+                            <td>{{ sortie.nomSortie }}</td>
+                            <td>{{ sortie.dateHeureDebut|format_datetime('short', 'short', locale='fr') }}</td>
+                            <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
+                            <td>{{ sortie.participants|length}}/{{ sortie.nbInscriptionMax }}</td>
+                            <td>{{ sortie.etat.libelle }}</td>
+                            <td>ND</td> <!--todo savoir si je suis inscrit-->
+                            <td>{{ sortie.organisateur.pseudo }}</td>
+                            <td>ND</td> <!--todo lien vers les actions-->
+                        </tr>
+                    {% endfor %}
+                </table>
+        </div>
+        <div class="creationSortie">
+            <button class="btn btn-lg btn-primary" type="submit">Créer une sortie</button>
+        </div>
     </div>
 </div>
 {% endblock %}
