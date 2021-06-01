@@ -11,6 +11,8 @@
 
     <div class="formFiltre">
         <h5>Filtrer les sorties</h5>
+        {{form_start(searchForm) }}
+        {{form_end(searchForm) }}
     </div>
 
     <div class="listeSorties">
@@ -32,7 +34,7 @@
                         <td>{{ sortie.dateHeureDebut|format_datetime('short', 'short', locale='fr') }}</td>
                         <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
                         <td>{{ sortie.participants|length}}/{{ sortie.nbInscriptionMax }}</td>
-                        <td>ND</td> <!--todo lien entité Etat-->
+                        <td>{{ sortie.etat.libelle }}</td>
                         <td>ND</td> <!--todo savoir si je suis inscrit-->
                         <td>{{ sortie.organisateur.pseudo }}</td>
                         <td>ND</td> <!--todo lien vers les actions-->
