@@ -4,4 +4,12 @@
 
 {% block body %}
 <h1>les sorties, c'est par ici !</h1>
+
+    {% for sortie in sorties %}
+        <article>
+            <div>
+                {{ sortie.nomSortie }}
+            </div>
+        </article>
+    {% endfor %}
 {% endblock %}
