@@ -16,7 +16,7 @@
     <div class="listeSorties">
         <h5>Liste des sorties :</h5>
             <table class="tabSorties">
-                <tr>
+                <tr class="trSortie">
                     <th>Nom de la sortie</th>
                     <th>Date de la sortie</th>
                     <th>Clôture</th>
@@ -27,9 +27,9 @@
                     <th>Action</th>
                 </tr>
                 {% for sortie in sorties %}
-                    <tr>
-                        <td class="tSortie">{{ sortie.nomSortie }}</td>
-                        <td>{{ sortie.dateHeureDebut|date("d/m/Y") }}</td>
+                    <tr class="tSortie">
+                        <td>{{ sortie.nomSortie }}</td>
+                        <td>{{ sortie.dateHeureDebut|format_datetime('short', 'short', locale='fr') }}</td>
                         <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
                         <td>{{ sortie.participants|length}}/{{ sortie.nbInscriptionMax }}</td>
                         <td>ND</td> <!--todo lien entité Etat-->
