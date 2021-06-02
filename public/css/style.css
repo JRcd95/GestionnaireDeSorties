@@ -111,3 +111,6 @@ input{
 h6{
     font-style: italic;
 }
+table>tr>td{
+    padding-bottom: 5px;
+}

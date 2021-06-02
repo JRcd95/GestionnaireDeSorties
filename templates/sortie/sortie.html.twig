@@ -9,54 +9,74 @@
         <h4>Participant : {{ app.user.pseudo }}</h4>
     </div>
 </div>
+    </br>
+    </br>
 <div class="container">
     <div class="formFiltre">
         <h5>Filtrer les sorties</h5>
+        </br>
         {{form_start(searchForm) }}
         <div class="row">
-            <div class="col">
-                <div class="campusSearch">
-                    {{ form_row(searchForm.campusSearch) }}
-                </div>
-                <div class="campusSearch">
-                    {{ form_row(searchForm.recherche) }}
-                </div>
-                <div class="campusSearch">
-                    <div class="row">
-                        <div class="col">
-                            {{ form_row(searchForm.dateDebutSearch) }}
-                        </div>
-                        <div class="col">
+            <div class="col-6">
+                <table>
+                    <tr>
+                        <th>Campus :</th>
+                        <td>
+                            {{ form_row(searchForm.campusSearch) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Le nom de la sortie contient :</th>
+                        <td>
+                            {{ form_row(searchForm.recherche) }}
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <th>Entre </th>
+                        <td >
+                            {{ form_row(searchForm.dateDebutSearch) }} et
                             {{ form_row(searchForm.dateFinSearch) }}
-                        </div>
-                    </div>
-                </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <div class="col">
-                <div class="sortieSearch">
-                    {{ form_row(searchForm.sortieOrganisee) }}
-                </div>
-                <div class="sortieSearch">
-                    {{ form_row(searchForm.sortieInscrit) }}
-                </div>
-                <div class="sortieSearch">
-                    {{ form_row(searchForm.sortieNonInscrit) }}
-                </div>
-                <div class="sortieSearch">
-                    {{ form_row(searchForm.sortiePassee) }}
-                </div>
+            <div class="col-4">
+                <table>
+                    <tr>
+                        <th>Autres filtres :</th>
+                    </tr>
+                    <tr>
+                        <td>{{ form_widget(searchForm.sortieOrganisee) }} {{ form_label(searchForm.sortieOrganisee) }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form_widget(searchForm.sortieInscrit) }} {{ form_label(searchForm.sortieInscrit) }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form_widget(searchForm.sortieNonInscrit) }} {{ form_label(searchForm.sortieNonInscrit) }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form_widget(searchForm.sortiePassee) }} {{ form_label(searchForm.sortiePassee) }}</td>
+                    </tr>
+                </table>
             </div>
-            <div class="col">
+            <div class="col-2 ">
+                </br>
+                </br>
+                </br>
                 <button class="btn btn-lg btn-primary" type="submit">Rechercher</button>
             </div>
         </div>
         {{form_end(searchForm) }}
     </div>
 </div>
+    </br>
+    </br>
 <div class="container">
     <div class="row">
         <div class="listeSorties">
             <h5>Liste des sorties :</h5>
+            </br>
                 <table class="tabSorties">
                     <tr class="trSortie">
                         <th>Nom de la sortie</th>

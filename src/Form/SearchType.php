@@ -19,38 +19,50 @@ class SearchType extends AbstractType
     {
         $builder
             ->add('campusSearch', EntityType::class, [
-                'label' => 'Campus :',
-                'required' => false,
                 'class' => Campus::class,
-                'expanded' => true,
-                'multiple' => true])
+                'label' => false,
+                'choice_label'=> function(Campus $campus){
+                return $campus->getNomCampus();
+                },
+                'placeholder' => '--Campus--',
+                'mapped' => false,
+                'required' => false,
+                'expanded' => false,
+                'multiple' => false])
+
             ->add('recherche', TextType::class, [
-                'label' => 'Le nom de la sortie contient :',
+                'label' => false,
                 'required' => false,
                 'attr' => ['placeholder' => 'Search'
                 ]])
+
             ->add('dateDebutSearch', DateType::class,[
-                'label' => 'Entre ',
+                'label' => false,
                 'required' => false,
                 'widget' => 'single_text'
             ])
+
             ->add('dateFinSearch', DateType::class,[
-                'label' => 'et',
+                'label' => false,
                 'required' => false,
                 'widget' => 'single_text'
             ])
+
             ->add('sortieOrganisee', CheckboxType::class,[
                 'label' => 'Sorties dont je suis l\'organisateur/trice',
                 'required' => false
             ])
+
             ->add('sortieInscrit', CheckboxType::class,[
                 'label' => 'Sorties auxquelles je suis inscrit/e',
                 'required' => false
             ])
+
             ->add('sortieNonInscrit', CheckboxType::class,[
                 'label' => 'Sorties auxquelles je ne suis pas inscrit/e',
                 'required' => false
             ])
+
             ->add('sortiePassee', CheckboxType::class,[
                 'label' => 'Sorties passée',
                 'required' => false
