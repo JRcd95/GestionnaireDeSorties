@@ -76,9 +76,11 @@
                             <td>{{ sortie.participants|length}}/{{ sortie.nbInscriptionMax }}</td>
                             <td>{{ sortie.etat.libelle }}</td>
                             <td>
-                                {% if app.user.id in sortie.participants|keys %}
-                                    X
-                                {% endif %}
+                                {% for p in sortie.participants %}
+                                    {% if p.id == app.user.id %}
+                                        X
+                                    {% endif %}
+                                {% endfor %}
                             </td> <!--todo savoir si je suis inscrit-->
                             <td>{{ sortie.organisateur.pseudo }}</td>
                             <td>
