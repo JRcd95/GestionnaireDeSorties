@@ -23,10 +23,7 @@ class SearchType extends AbstractType
                 'required' => false,
                 'class' => Campus::class,
                 'expanded' => true,
-                'multiple' => true,
-                'attr' => [
-                    'placeholder' => '--Campus--'
-            ]])
+                'multiple' => true])
             ->add('recherche', TextType::class, [
                 'label' => 'Le nom de la sortie contient :',
                 'required' => false,

@@ -22,6 +22,7 @@
     color: #FFFFFF;
     margin-top: 12px;
     margin-bottom: 8px;
+    border-color: black;
 }
 .btn:hover{
     background: #FFFFFF;
@@ -82,4 +83,28 @@ input{
 .trSortie{
     background-color: #144A7F;
     color: white;
+}
+.addLieuBtn > div:hover{
+    background: #FFFFFF;
+    color: #144A7F;
+    border-color: #144A7F;
+}
+
+.addLieuBtn >div {
+    background: #144A7F;
+    width: 30px;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 50%;
+    font-weight: bold;
+    border-color: #144A7F;
+}
+.addLieuBtn>div>a{
+    color: white;
+    text-decoration: none;
+}
+.addLieuBtn > div> a:hover{
+    color: #144A7F;
 }

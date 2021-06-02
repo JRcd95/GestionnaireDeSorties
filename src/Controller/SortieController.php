@@ -7,6 +7,8 @@ use App\Form\AddSortieType;
 use App\Form\SearchType;
 use App\Repository\SortieRepository;
 use App\Search\Search;
+use Doctrine\ORM\EntityManagerInterface;
+use http\Client\Curl\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,10 +35,22 @@ class SortieController extends AbstractController
     /**
      * @Route ("/sortie/add", name="sortie_add")
      */
-    public function addSortie(Request $request): Response {
+    public function addSortie(Request $request, EntityManagerInterface $entityManager): Response {
         $sortie = new Sortie();
+
+        $sortie->setOrganisateur($this->getUser());
+        $sortie->setCampusOrganisateur($this->getUser()->getCampus());
+        $sortie->setEtat($entityManager->getRepository('App:Etat')->find(1));
+
         $addSortieForm = $this->createForm(AddSortieType::class, $sortie);
 
+        $addSortieForm->handleRequest($request);
+        if ($addSortieForm->isSubmitted() && $addSortieForm->isValid()){
+            $entityManager->persist($sortie);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('sortie');
+        }
         return $this->render('sortie/addSortie.html.twig', [
             'addSortieForm' => $addSortieForm->createView()
         ]);

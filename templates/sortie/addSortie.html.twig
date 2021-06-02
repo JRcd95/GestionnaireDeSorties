@@ -2,13 +2,13 @@
 
 {% block body %}
     <div class="container">
+        {{ form_start(addSortieForm) }}
         <div class="row">
             <div class="col">
                 <h4>Créer une sortie</h4>
             </div>
         </div>
         <div class="row">
-            {{ form_start(addSortieForm) }}
             <div class="col">
                 <div class="gaucheAddSortie">
                     {{ form_row(addSortieForm.nomSortie) }}
@@ -33,16 +33,19 @@
                 <div class="droiteAddSortie">
                     {{ form_row(addSortieForm.lieu) }}
                 </div>
+                <div class="addLieuBtn">
+                    <div><a href="#">+</a></div>
+                </div>
             </div>
-            {{ form_end(addSortieForm) }}
         </div>
         <div class="row">
             <div class="col">
                 <button type="submit" class="btn">Enregistrer</button>
-                <button type="submit" class="btn">Publier la sortie</button>
+                <button class="btn">Publier la sortie</button>
                 <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Annuler</button>
             </div>
         </div>
+        {{ form_end(addSortieForm) }}
     </div>
 {% endblock %}
 
