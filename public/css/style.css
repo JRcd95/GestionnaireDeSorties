@@ -108,3 +108,6 @@ input{
 .addLieuBtn > div> a:hover{
     color: #144A7F;
 }
+h6{
+    font-style: italic;
+}

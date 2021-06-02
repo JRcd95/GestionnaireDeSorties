@@ -55,4 +55,14 @@ class SortieController extends AbstractController
             'addSortieForm' => $addSortieForm->createView()
         ]);
     }
+    /**
+     * @Route ("/sortie/details/{id}", name="sortie_details")
+     */
+    public function detailSortie(SortieRepository $sortieRepository, int $id): Response{
+        $sortie = $sortieRepository->find($id);
+
+        return $this->render('sortie/detailSortie.html.twig', [
+            "sortie" => $sortie
+        ]);
+    }
 }
