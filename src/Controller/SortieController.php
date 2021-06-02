@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Sortie;
+use App\Form\AddSortieType;
 use App\Form\SearchType;
 use App\Repository\SortieRepository;
 use App\Search\Search;
@@ -25,6 +27,18 @@ class SortieController extends AbstractController
             'searchForm' => $searchForm->createView(),
             'sorties' => $sorties
 
+        ]);
+    }
+
+    /**
+     * @Route ("/sortie/add", name="sortie_add")
+     */
+    public function addSortie(Request $request): Response {
+        $sortie = new Sortie();
+        $addSortieForm = $this->createForm(AddSortieType::class, $sortie);
+
+        return $this->render('sortie/addSortie.html.twig', [
+            'addSortieForm' => $addSortieForm->createView()
         ]);
     }
 }

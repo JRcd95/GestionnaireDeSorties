@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>Créer une sortie</h4>
+            </div>
+        </div>
+        <div class="row">
+            {{ form_start(addSortieForm) }}
+            <div class="col">
+                <div class="gaucheAddSortie">
+                    {{ form_row(addSortieForm.nomSortie) }}
+                </div>
+                <div class="gaucheAddSortie">
+                    {{ form_row(addSortieForm.dateHeureDebut) }}
+                </div>
+                <div class="gaucheAddSortie">
+                    {{ form_row(addSortieForm.dateLimiteInscription) }}
+                </div>
+                <div class="gaucheAddSortie">
+                    {{ form_row(addSortieForm.nbInscriptionMax) }}
+                </div>
+                <div class="gaucheAddSortie">
+                    {{ form_row(addSortieForm.duree) }}
+                </div>
+                <div class="gaucheAddSortie">
+                    {{ form_row(addSortieForm.infosSortie) }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="droiteAddSortie">
+                    {{ form_row(addSortieForm.lieu) }}
+                </div>
+            </div>
+            {{ form_end(addSortieForm) }}
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn">Enregistrer</button>
+                <button type="submit" class="btn">Publier la sortie</button>
+                <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Annuler</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
