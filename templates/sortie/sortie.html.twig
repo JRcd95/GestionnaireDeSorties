@@ -75,7 +75,11 @@
                             <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
                             <td>{{ sortie.participants|length}}/{{ sortie.nbInscriptionMax }}</td>
                             <td>{{ sortie.etat.libelle }}</td>
-                            <td>ND</td> <!--todo savoir si je suis inscrit-->
+                            <td>
+                                {% if app.user.id in sortie.participants|keys %}
+                                    X
+                                {% endif %}
+                            </td> <!--todo savoir si je suis inscrit-->
                             <td>{{ sortie.organisateur.pseudo }}</td>
                             <td>ND</td> <!--todo lien vers les actions-->
                         </tr>
