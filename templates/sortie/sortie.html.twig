@@ -81,11 +81,11 @@
                                         X
                                     {% endif %}
                                 {% endfor %}
-                            </td> <!--todo savoir si je suis inscrit-->
+                            </td>
                             <td>{{ sortie.organisateur.pseudo }}</td>
                             <td>
                                 <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>
-                            </td> <!--todo lien vers les actions-->
+                            </td>
                         </tr>
                     {% endfor %}
                 </table>
