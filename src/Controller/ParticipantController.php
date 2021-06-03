@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ParticipantController extends AbstractController
 {
@@ -25,12 +26,16 @@ class ParticipantController extends AbstractController
     /**
      * @Route("/participant/edit/{id}", name="participant_edit")
      */
-    public function editProfil(Participant $user, Request $request, EntityManagerInterface $entityManager): Response {
+    public function editProfil(Participant $user, Request $request, EntityManagerInterface $entityManager,UserPasswordEncoderInterface $passwordEncoder): Response {
 
         $form = $this->createForm(ParticipantEditType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
+
+            $hashed = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($hashed);
+
             $entityManager->flush();
             return $this->redirectToRoute('sortie');
         }

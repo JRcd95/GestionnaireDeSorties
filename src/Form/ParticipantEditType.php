@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Participant;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,6 +29,22 @@ class ParticipantEditType extends AbstractType
             ])
             ->add('pseudo', TextType::class, [
                 'label' => false
+            ])
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message'=>'Les deux doivent être identiques',
+                'first_options' => [
+                    'label' => 'Nouveau mot de passe :',
+                    'attr' => [
+                        'maxlength' => 50
+                    ]
+                ],
+                'second_options' => [
+                    'label' => 'Confirmation :',
+                    'attr' => [
+                        'maxlength' => 50
+                    ]
+                ]
             ])
         ;
     }
