@@ -6,6 +6,7 @@ use App\Entity\Sortie;
 use App\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @method Sortie|null find($id, $lockMode = null, $lockVersion = null)
@@ -22,7 +23,33 @@ class SortieRepository extends ServiceEntityRepository
     public function searchFilter(Search $search): array
     {
         $query = $this
-            ->createQueryBuilder('s');
+            ->createQueryBuilder('s')
+            ->select('c', 's')
+            ->join('s.campusOrganisateur', 'c');
+
+        if(!empty($search->campusSearch)){
+            $query = $query
+                ->andWhere('c.id IN (:campus)')
+                ->setParameter('campus', $search->campusSearch);
+        }
+
+        if(!empty($search->recherche)){
+            $query = $query
+                ->andWhere('s.nomSortie LIKE :recherche')
+                ->setParameter('recherche', "%{$search->recherche}%");
+        }
+
+        if(!empty($search->dateDebutSearch)){
+            $query = $query
+                ->andWhere('s.dateHeureDebut >= :debut')
+                ->setParameter('debut', $search->dateDebutSearch);
+        }
+
+        if(!empty($search->dateFinSearch)){
+            $query = $query
+                ->andWhere('s.dateHeureDebut <= :fin')
+                ->setParameter('fin', $search->dateFinSearch);
+        }
 
         return $query->getQuery()->getResult();
     }

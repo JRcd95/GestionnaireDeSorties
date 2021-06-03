@@ -21,9 +21,6 @@ class SearchType extends AbstractType
             ->add('campusSearch', EntityType::class, [
                 'class' => Campus::class,
                 'label' => false,
-                'choice_label'=> function(Campus $campus){
-                return $campus->getNomCampus();
-                },
                 'placeholder' => '--Campus--',
                 'mapped' => false,
                 'required' => false,

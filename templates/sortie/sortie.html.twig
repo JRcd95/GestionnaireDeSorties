@@ -79,6 +79,9 @@
         <div class="listeSorties">
             <h5>Liste des sorties :</h5>
             </br>
+            {% if sorties|length ==0 %}
+                <h6>Aucun résultat ne correspond à votre recherche.</h6>
+            {% else %}
                 <table class="tabSorties">
                     <tr class="trSortie">
                         <th>Nom de la sortie</th>
@@ -122,6 +125,7 @@
                         </tr>
                     {% endfor %}
                 </table>
+            {% endif %}
         </div>
         <div class="creationSortie">
             <button class="btn btn-lg btn-primary" onclick="window.location.href ='{{ path('sortie_add') }}';">Créer une sortie</button>
