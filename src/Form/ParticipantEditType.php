@@ -28,19 +28,20 @@ class ParticipantEditType extends AbstractType
                 'label' => false
             ])
             ->add('pseudo', TextType::class, [
-                'label' => false
+                'label' => false,
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
+                'required' => false,
                 'invalid_message'=>'Les deux doivent être identiques',
                 'first_options' => [
-                    'label' => 'Nouveau mot de passe :',
+                    'label' => false,
                     'attr' => [
                         'maxlength' => 50
                     ]
                 ],
                 'second_options' => [
-                    'label' => 'Confirmation :',
+                    'label' => false,
                     'attr' => [
                         'maxlength' => 50
                     ]
