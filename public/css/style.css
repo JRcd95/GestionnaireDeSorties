@@ -110,9 +110,13 @@ input{
     font-weight: bold;
     border-color: #144A7F;
 }
+.addLieuBtn >div:hover {
+    color: #144A7F;
+    border-color: #144A7F;
+}
 .addLieuBtn>div>a{
-    color: white;
     text-decoration: none;
+    color: white;
 }
 .addLieuBtn > div> a:hover{
     color: #144A7F;

@@ -43,7 +43,7 @@ class AddSortieType extends AbstractType
             ])
 
             ->add('lieu', EntityType::class, [
-                'label' => 'Lieu :',
+                'label' => false,
                 'class' => Lieu::class,
                 'placeholder' => "--Lieu--"
 
