@@ -71,6 +71,10 @@
         {% else %}
             <h6>Cette sortie vous est proposée par <a href="#">{{ sortie.organisateur.pseudo }}</a></h6>
         {% endif %}
+
+        {% if sortie.participants|length == 0%}
+            <h6>Aucun participant pour le moment.</h6>
+        {% else %}
         <table class="tabSorties">
             <tr class="trSortie">
                 <th>Pseudo</th>
@@ -83,6 +87,7 @@
                 </tr>
            {% endfor %}
         </table>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
