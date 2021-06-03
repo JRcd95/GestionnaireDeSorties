@@ -7,7 +7,6 @@ use App\Search\Search;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -47,7 +46,7 @@ class SearchType extends AbstractType
 
             ->add('sortieOrganisee', CheckboxType::class,[
                 'label' => 'Sorties dont je suis l\'organisateur/trice',
-                'required' => false
+                'required' => false,
             ])
 
             ->add('sortieInscrit', CheckboxType::class,[
