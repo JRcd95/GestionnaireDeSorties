@@ -66,7 +66,11 @@
     </br>
     <div class="row">
         <h5>Liste des participants incrits</h5>
-        <h6>Cette sortie vous est proposée par <a href="#">{{ sortie.organisateur.pseudo }}</a></h6>
+        {% if app.user.id == sortie.organisateur.id %}
+            <h6>Vous proposez cette sortie</h6>
+        {% else %}
+            <h6>Cette sortie vous est proposée par <a href="#">{{ sortie.organisateur.pseudo }}</a></h6>
+        {% endif %}
         <table class="tabSorties">
             <tr class="trSortie">
                 <th>Pseudo</th>
