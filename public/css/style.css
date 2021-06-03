@@ -38,17 +38,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.modifProfil {
+    margin-left: 20%;
+}
 
-main{
+.mfModifProfil{
     border: 2px solid #E0E0E0;
     border-radius: 10px 10px 10px 10px;
     box-shadow: 5px 2px 2px #B6B6B6;
-    width: 30%;
-    min-height: 500px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 15%;
 }
 main h2{
     color: #144A7F;

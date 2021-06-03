@@ -5,34 +5,60 @@
 {% endblock %}
 
 {% block body %}
+    </br>
 <main>
     <div class="row">
         <div class="col">
             <div class="text-center ">
                 <h2>Modifier mon profil</h2>
-            </div>
-            <div class="box-form">
-                {{ form_start(form) }}
-                <div class="form-group">
-                    {{ form_row(form.pseudo) }}
-                </div>
-                <div class="form-group">
-                    {{ form_row(form.nom)}}
-                </div>
-                <div class="form-group">
-                    {{ form_row(form.prenom) }}
-                </div>
-                <div class="form-group">
-                    {{ form_row(form.email) }}
-                </div>
-                <div class="form-group">
-                    {{ form_row(form.telephone) }}
-                </div>
-                <button type="submit" class="btn">Modifier</button>
-                <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Annuler</button>
+            </br>
             </div>
         </div>
-        {{ form_end(form) }}
+    </div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="mfModifProfil">
+                {{ form_start(form) }}
+                <table>
+                    <tr>
+                        <th>Pseudo :</th>
+                        <td>{{ form_row(form.pseudo) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom :</th>
+                        <td>{{ form_row(form.nom)}}</td>
+                    </tr>
+                    <tr>
+                        <th>Prénom :</th>
+                        <td>{{ form_row(form.prenom) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email :</th>
+                        <td>{{ form_row(form.email) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Téléphone :</th>
+                        <td>{{ form_row(form.telephone) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nouveau mot de passe :</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Validation mot de passe :</th>
+                        <td></td>
+                    </tr>
+                </table>
+                </br>
+                <div class="modifProfil">
+                    <button type="submit" class="btn">Modifier</button>
+                    <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Annuler</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="col-4"></div>
     </div>
 </main>
 {% endblock %}

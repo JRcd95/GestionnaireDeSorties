@@ -14,19 +14,19 @@ class ParticipantEditType extends AbstractType
     {
         $builder
             ->add('email', TextType::class, [
-                'label' => 'Email'
+                'label' => false
             ])
             ->add('nom', TextType::class, [
-                'label' => 'Nom'
+                'label' => false
             ])
             ->add('prenom', TextType::class, [
-                'label' => 'Prénom'
+                'label' => false
             ])
             ->add('telephone', TextType::class, [
-                'label' => 'Téléphone'
+                'label' => false
             ])
             ->add('pseudo', TextType::class, [
-                'label' => 'Pseudo'
+                'label' => false
             ])
         ;
     }
