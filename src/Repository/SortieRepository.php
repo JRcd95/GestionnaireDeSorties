@@ -22,6 +22,7 @@ class SortieRepository extends ServiceEntityRepository
 
     public function searchFilter(Search $search): array
     {
+
         $query = $this
             ->createQueryBuilder('s')
             ->select('c', 's')
@@ -50,6 +51,19 @@ class SortieRepository extends ServiceEntityRepository
                 ->andWhere('s.dateHeureDebut <= :fin')
                 ->setParameter('fin', $search->dateFinSearch);
         }
+
+        if(!empty($search->sortieOrganisee)){
+            $query = $query
+                ->andWhere('s.organisateur = :id')
+                ->setParameter('id', 2);
+        }
+
+        if(!empty($search->sortiePassee)){
+            $query = $query
+                ->andWhere('s.etat = 5');
+        }
+
+
 
         return $query->getQuery()->getResult();
     }
