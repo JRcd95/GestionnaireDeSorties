@@ -26,16 +26,17 @@ class AddSortieType extends AbstractType
                 'label' => false,
                 'widget' => 'single_text'])
 
-            ->add('duree', TimeType::class,[
+            ->add('duree', IntegerType::class,[
                 'label' => false,
-                'widget' => 'single_text'])
+                ])
 
             ->add('dateLimiteInscription', DateTimeType::class,[
                 'label' => false,
                 'widget' => 'single_text'])
 
             ->add('nbInscriptionMax', IntegerType::class,[
-                'label' => false])
+                'label' => false
+            ])
 
             ->add('infosSortie', TextType::class, [
                 'label' => false

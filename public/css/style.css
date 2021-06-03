@@ -124,3 +124,8 @@ h6{
     margin-right: auto;
     margin-left: auto;
 }
+
+.minutes{
+    font-style: italic;
+    font-weight: normal;
+}

@@ -17,24 +17,23 @@
                 <table>
                     <tr>
                         <th>Nom de la sortie :</th>
-                        <td>
-                            {{ form_row(addSortieForm.nomSortie) }}</td>
+                        <td>{{ form_row(addSortieForm.nomSortie) }}</td>
                     </tr>
                     <tr>
                         <th>Date et heure de la sortie :</th>
                         <td>{{ form_row(addSortieForm.dateHeureDebut) }}</td>
                     </tr>
                     <tr>
-                        <th>Durée :</th>
-                        <td>{{ form_row(addSortieForm.dateLimiteInscription) }}</td>
+                        <th>Durée :<div class="minutes">(en minutes)</div></th>
+                        <td>{{ form_row(addSortieForm.duree) }}</td>
                     </tr>
                     <tr>
                         <th>Date limite d'inscription :</th>
-                        <td>{{ form_row(addSortieForm.nbInscriptionMax) }}</td>
+                        <td>{{ form_row(addSortieForm.dateLimiteInscription) }}</td>
                     </tr>
                     <tr>
                         <th>Nombre de places :</th>
-                        <td>{{ form_row(addSortieForm.duree) }}</td>
+                        <td>{{ form_row(addSortieForm.nbInscriptionMax) }}</td>
                     </tr>
                     <tr>
                         <th>Description et infos :</th>
