@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Sortie;
 use App\Form\AddSortieType;
 use App\Form\SearchType;
+use App\Form\SinscrireType;
 use App\Repository\LieuRepository;
 use App\Repository\SortieRepository;
 use App\Search\Search;
@@ -74,6 +75,7 @@ class SortieController extends AbstractController
      * @Route ("/sortie/sinscrire", name="sortie_sinscrire")
      */
     public function sincrireSortie(): Response {
+
         return $this->render('sortie/sinscrire.html.twig');
     }
 }
