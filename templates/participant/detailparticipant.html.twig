@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Détail du participant {% endblock %}
+
+{% block body %}
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="text-center ">
+                </br>
+                <h2>Profil de : {{ participant.pseudo|capitalize }}</h2>
+                </br>
+                </br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="afModifProfil">
+                    <table>
+                        <tr>
+                            <th>Prénom :</th>
+                            <td>{{ participant.prenom }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom :</th>
+                            <td>{{ participant.nom }}</td>
+                        </tr>
+                        <tr>
+                            <th>Téléphone :</th>
+                            <td>{{ participant.telephone }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email :</th>
+                            <td>{{ participant.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Campus :</th>
+                            <td>{{ participant.campus }}</td>
+                        </tr>
+                    </table>
+                    </br>
+                    <div class="modifProfil">
+                        <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Retour</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        </br>
+    </div>
+</main>
+{% endblock %}
+

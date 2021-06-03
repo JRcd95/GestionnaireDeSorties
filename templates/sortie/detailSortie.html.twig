@@ -78,7 +78,7 @@
             </tr>
            {% for p in sortie.participants %}
                 <tr class="tSortie">
-                    <td><a href="#">{{ p.pseudo }}</a></td>
+                    <td><a href="{{ path('participant_details', {'id': p.id}) }}">{{ p.pseudo }}</a></td>
                     <td>{{ p.prenom }} {{ p.nom|upper }}</td>
                 </tr>
            {% endfor %}

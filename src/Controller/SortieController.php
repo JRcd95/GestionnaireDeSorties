@@ -66,4 +66,11 @@ class SortieController extends AbstractController
             "sortie" => $sortie
         ]);
     }
+
+    /**
+     * @Route ("/sortie/sinscrire", name="sortie_sinscrire")
+     */
+    public function sincrireSortie(): Response {
+        return $this->render('sortie/sinscrire.html.twig');
+    }
 }

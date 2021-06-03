@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Participant;
 use App\Form\ParticipantEditType;
+use App\Repository\ParticipantRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,6 +38,17 @@ class ParticipantController extends AbstractController
         return $this->render('participant/edit.html.twig', [
             "user" => $user,
             "form" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route ("/participant/details/{id}", name="participant_details")
+     */
+    public function detailSortie(ParticipantRepository $participantRepository, int $id): Response{
+        $participant = $participantRepository->find($id);
+
+        return $this->render('participant/detailparticipant.html.twig', [
+            "participant" => $participant
         ]);
     }
 }
