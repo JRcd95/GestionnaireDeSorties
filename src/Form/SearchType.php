@@ -20,11 +20,7 @@ class SearchType extends AbstractType
             ->add('campusSearch', EntityType::class, [
                 'class' => Campus::class,
                 'label' => false,
-                'placeholder' => '--Campus--',
-                'mapped' => false,
-                'required' => false,
-                'expanded' => false,
-                'multiple' => false])
+                'placeholder' => '--Campus--'])
 
             ->add('recherche', TextType::class, [
                 'label' => false,

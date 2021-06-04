@@ -10,7 +10,7 @@ class Search {
     /**
      * @var Campus
      */
-    public $campusSearch = [];
+    public $campusSearch;
     /**
      * @var string
      */
@@ -31,10 +31,6 @@ class Search {
     public $sortieNonInscrit;
 
     public $sortiePassee;
-    /**
-     * @var Sortie
-     */
-    public $sortie;
 
 
 
