@@ -53,6 +53,14 @@ class SortieController extends AbstractController
 
         $addSortieForm->handleRequest($request);
         if ($addSortieForm->isSubmitted() && $addSortieForm->isValid()){
+
+            if($addSortieForm->get('enregistrer')->isClicked()){
+                $sortie->setEtat($etat= $entityManager->getRepository('App:Etat')->find(1));
+            }
+            if($addSortieForm->get('publier')->isClicked()){
+                $sortie->setEtat($etat= $entityManager->getRepository('App:Etat')->find(2));
+            }
+
             $entityManager->persist($sortie);
             $entityManager->flush();
 
