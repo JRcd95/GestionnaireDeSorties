@@ -98,7 +98,13 @@
                             <td>{{ sortie.nomSortie }}</td>
                             <td>{{ sortie.dateHeureDebut|format_datetime('short', 'short', locale='fr') }}</td>
                             <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
-                            <td>{{ sortie.participants|length}}/{{ sortie.nbInscriptionMax }}</td>
+                            <td>
+                                {% if sortie.etat.id == 6 %}
+                                    0/0
+                                {% else %}
+                                    {{ sortie.participants|length}}/{{ sortie.nbInscriptionMax }}
+                                {% endif %}
+                            </td>
                             <td>{{ sortie.etat.libelle }}</td>
                             <td>
                                 {% for p in sortie.participants %}
@@ -122,6 +128,9 @@
                                     {% endif %}
                                     {% if sortie.etat.id ==1 %}
                                         <a href="{{ path('sortie_publier', {'id': sortie.id}) }}">Publier</a>
+                                    {% endif %}
+                                    {% if sortie.etat.id ==2 %}
+                                        <a href="{{ path('sortie_annulee', {'id': sortie.id}) }}">Annuler</a>
                                     {% endif %}
                                 {% else %}
                                     {% if sortie.dateLimiteInscription|date("d/m/Y") > 'now'|date("d/m/Y")%}

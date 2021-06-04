@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Etat;
 use App\Entity\Sortie;
 use App\Form\AddSortieType;
+use App\Form\CancelSortieType;
 use App\Form\EditSortieType;
 use App\Form\SearchType;
 use App\Form\SinscrireType;
@@ -143,6 +144,26 @@ class SortieController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('sortie');
+    }
+
+    /**
+     * @Route ("/sortie/annulee/{id}", name="sortie_annulee")
+     */
+    public function annuleeSortie(Sortie $sortie, Request $request, EntityManagerInterface $entityManager):Response {
+        $formCancel=$this->createForm(CancelSortieType::class, $sortie);
+        $formCancel->handleRequest($request);
+
+        if ($formCancel->isSubmitted() && $formCancel->isValid()){
+            $sortie->setEtat($etat= $entityManager->getRepository('App:Etat')->find(6));
+
+            $entityManager->flush();
+            return $this->redirectToRoute('sortie');
+        }
+
+        return $this->render('sortie/annulerSortie.html.twig', [
+            "sortie" => $sortie,
+            "form" => $formCancel->createView()
+        ]);
     }
 }
 

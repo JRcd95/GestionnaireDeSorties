@@ -97,7 +97,7 @@
                     <!-- <button type="submit" class="btn">Enregistrer</button>
                      <button class="btn">Publier la sortie</button> -->
                     <button class="btn">Supprimer</button>
-                    <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Retour</button>
+                    <button class="btn"><a class="annulerBtn" href="{{ path('sortie_annulee', {'id': sortie.id}) }}">Annuler la sortie</a></button>
                 </div>
             </div>
             <div class="col-3"></div>

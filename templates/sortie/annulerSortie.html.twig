@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block title %}Annuler une sortie{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <br>
+                <br>
+                <div class="text-center">
+                    <h2>Annuler une sortie</h2>
+                </div>
+                <br>
+                <br>
+                <div class="mfAnnulerSortie">
+                    {{ form_start(form) }}
+                    <table>
+                        <tr>
+                            <th>Nom de la sortie :</th>
+                            <td>{{ sortie.nomSortie}}</td>
+                        </tr>
+                        <tr>
+                            <th>Date de la sortie :</th>
+                            <td>{{ sortie.dateLimiteInscription|date('d/m/Y') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Campus :</th>
+                            <td>{{ sortie.campusOrganisateur.nomCampus}}</td>
+                        </tr>
+                        <tr>
+                            <th>Lieu :</th>
+                            <td>{{ sortie.lieu.rue}}{{ sortie.lieu.ville.codePostal}}{{ sortie.lieu.ville.nomVille}}</td>
+                        </tr>
+                        <tr>
+                            <th>Motif :</th>
+                            <td>{{ form_row(form) }}</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <button type="submit" class="btn">Enregistrer</button>
+                    {{ form_end(form) }}
+                    <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Retour</button>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+

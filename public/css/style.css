@@ -133,3 +133,34 @@ h6{
     font-style: italic;
     font-weight: normal;
 }
+.mfAnnulerSortie{
+    border: 2px solid #E0E0E0;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 2px 2px #B6B6B6;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 30%;
+}
+.annulerBtn {
+    color: white;
+    text-decoration: none;
+}
+.annulerBtn:hover {
+    color: #144A7F;
+}
+.tristesse{
+    border: 2px solid #E0E0E0;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 2px 2px #B6B6B6;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 25%;
+}
+.tristesse>p {
+    color: #bb2d3b;
+    font-size: x-large;
+    font-weight: bold;
+}
+.tristesse>table{
+    margin-left: 60px;
+}
