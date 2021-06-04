@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Etat;
 use App\Entity\Sortie;
 use App\Form\AddSortieType;
 use App\Form\EditSortieType;
@@ -114,6 +115,18 @@ class SortieController extends AbstractController
             "sortie" => $sortie,
             "formEditSortie" => $formEditSortie->createView()
         ]);
+    }
+
+    /**
+     * @Route ("/sortie/publier/{id}", name="sortie_publier")
+     */
+    public function publierSortie(SortieRepository $sortieRepository, int $id, EntityManagerInterface $entityManager):RedirectResponse {
+        $sortie = $sortieRepository->find($id);
+        $sortie->setEtat($etat= $entityManager->getRepository('App:Etat')->find(2));
+        $entityManager->persist($sortie);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('sortie');
     }
 }
 
