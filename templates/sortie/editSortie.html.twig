@@ -1,10 +1,106 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Modifier une sortie{% endblock %}
+
 {% block body %}
-    <p> ici je modifie la sortie</p>
-{% endblock %}
-
-{% block title %}
-
+    <div class="container">
+        {{ form_start(formEditSortie) }}
+        <div class="row">
+            <div class="col">
+                </br>
+                </br>
+                <h4>Modifier une sortie</h4>
+                </br>
+                </br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table>
+                    <tr>
+                        <th>Nom de la sortie :</th>
+                        <td>{{ form_row(formEditSortie.nomSortie) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date et heure de la sortie :</th>
+                        <td>{{ form_row(formEditSortie.dateHeureDebut) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Durée :<div class="minutes">(en minutes)</div></th>
+                        <td>{{ form_row(formEditSortie.duree) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date limite d'inscription :</th>
+                        <td>{{ form_row(formEditSortie.dateLimiteInscription) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de places :</th>
+                        <td>{{ form_row(formEditSortie.nbInscriptionMax) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description et infos :</th>
+                        <td>{{ form_row(formEditSortie.infosSortie) }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col">
+                <table>
+                    <tr>
+                        <th>Campus :</th>
+                        <td>{{ app.user.campus }}</td>
+                    </tr>
+                    <tr>
+                        <th>Lieu :</th>
+                        <td>
+                            {{ form_row(formEditSortie.lieu) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><div class="minutes">(ajouter un lieu)</div></th>
+                        <td>
+                            <div class="addLieuBtn">
+                                <div><a href="#">+</a></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ville :</th>
+                        <td>{{ sortie.lieu.ville.nomVille }}</td>
+                    </tr>
+                    <tr>
+                        <th>Rue :</th>
+                        <td>{{ sortie.lieu.rue }}</td>
+                    </tr>
+                    <tr>
+                        <th>Code postal :</th>
+                        <td>{{ sortie.lieu.ville.codePostal }}</td>
+                    </tr>
+                    <tr>
+                        <th>Latitude :</th>
+                        <td>{{ sortie.lieu.latitude}}</td>
+                    </tr>
+                    <tr>
+                        <th>Longitude :</th>
+                        <td>{{ sortie.lieu.longitude }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                </br>
+                </br>
+                <div class="addSortieBtn">
+                    <button type="submit" class="btn">Enregistrer</button>
+                    <button class="btn">Publier la sortie</button>
+                    <button class="btn">Supprimer</button>
+                    <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Retour</button>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        {{ form_end(formEditSortie) }}
+    </div>
 {% endblock %}
 

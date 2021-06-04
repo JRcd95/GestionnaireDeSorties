@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Sortie;
 use App\Form\AddSortieType;
+use App\Form\EditSortieType;
 use App\Form\SearchType;
 use App\Form\SinscrireType;
 use App\Repository\LieuRepository;
@@ -99,8 +100,44 @@ class SortieController extends AbstractController
     /**
      * @Route ("/sortie/edit/{id}", name="sortie_edit")
      */
-    public function editSortie( int $id): Response{
+    public function editSortie(Sortie $sortie, Request $request, EntityManagerInterface $entityManager): Response{
 
-        return $this->render('sortie/editSortie.html.twig');
+        $formEditSortie = $this->createForm(EditSortieType::class, $sortie);
+        $formEditSortie->handleRequest($request);
+
+        if ($formEditSortie->isSubmitted() && $formEditSortie->isValid()){
+
+            $entityManager->flush();
+            return $this->redirectToRoute('sortie');
+        }
+        return $this->render('sortie/editSortie.html.twig', [
+            "sortie" => $sortie,
+            "formEditSortie" => $formEditSortie->createView()
+        ]);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

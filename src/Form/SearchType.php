@@ -19,6 +19,7 @@ class SearchType extends AbstractType
         $builder
             ->add('campusSearch', EntityType::class, [
                 'class' => Campus::class,
+                'required' => false,
                 'label' => false,
                 'placeholder' => '--Campus--'])
 
