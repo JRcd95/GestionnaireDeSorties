@@ -92,8 +92,10 @@
                 </br>
                 </br>
                 <div class="addSortieBtn">
-                    <button type="submit" class="btn">Enregistrer</button>
-                    <button class="btn">Publier la sortie</button>
+                    <div class="btn">{{ form_row(formEditSortie.enregistrer) }}</div>
+                    <div class="btn">{{ form_row(formEditSortie.publier) }}</div>
+                    <!-- <button type="submit" class="btn">Enregistrer</button>
+                     <button class="btn">Publier la sortie</button> -->
                     <button class="btn">Supprimer</button>
                     <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Retour</button>
                 </div>

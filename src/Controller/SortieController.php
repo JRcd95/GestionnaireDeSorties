@@ -116,7 +116,15 @@ class SortieController extends AbstractController
 
         if ($formEditSortie->isSubmitted() && $formEditSortie->isValid()){
 
-            $entityManager->flush();
+            if($formEditSortie->get('enregistrer')->isClicked()){
+
+                $entityManager->flush();
+            }
+            if($formEditSortie->get('publier')->isClicked()){
+                $sortie->setEtat($etat= $entityManager->getRepository('App:Etat')->find(2));
+
+                $entityManager->flush();
+            }
             return $this->redirectToRoute('sortie');
         }
         return $this->render('sortie/editSortie.html.twig', [
