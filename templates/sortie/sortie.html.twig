@@ -118,17 +118,18 @@
                                 <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>
                                 {% if sortie.organisateur.id == app.user.id %}
                                 {% else %}
-                                    {% if sortie.participants.contains(app.user) %}
-                                        <a href="#">Se désister</a>
-                                    {% else %}
-                                        {% if sortie.etat.id ==2 %}
-                                                {% if sortie.participants|length < sortie.nbInscriptionMax %}
-                                                    <a href="{{ path('sortie_sinscrire') }}">S'inscrire</a>
-                                                {% endif %}
+                                    {% if sortie.dateLimiteInscription|date("d/m/Y") > 'now'|date("d/m/Y")%}
+                                        {% if sortie.participants.contains(app.user) %}
+                                            <a href="{{ path('sortie_desister', {'id': sortie.id}) }}">Se désister</a>
+                                        {% else %}
+                                            {% if sortie.etat.id ==2 %}
+                                                    {% if sortie.participants|length < sortie.nbInscriptionMax %}
+                                                            <a href="{{ path('sortie_sinscrire', {'id': sortie.id}) }}">S'inscrire</a>
+                                                    {% endif %}
+                                            {% endif %}
                                         {% endif %}
                                     {% endif %}
                                 {% endif %}
-
                             </td>
                         </tr>
                     {% endfor %}

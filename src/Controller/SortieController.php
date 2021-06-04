@@ -11,6 +11,7 @@ use App\Repository\SortieRepository;
 use App\Search\Search;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -72,10 +73,26 @@ class SortieController extends AbstractController
     }
 
     /**
-     * @Route ("/sortie/sinscrire", name="sortie_sinscrire")
+     * @Route ("/sortie/sinscrire/{id}", name="sortie_sinscrire")
      */
-    public function sincrireSortie(): Response {
+    public function sincrireSortie(SortieRepository $sortieRepository,int $id, EntityManagerInterface $entityManager): RedirectResponse {
+        $sortie = $sortieRepository->find($id);
+        $sortie->addParticipant($this->getUser());
+        $entityManager->persist($sortie);
+        $entityManager->flush();
 
-        return $this->render('sortie/sinscrire.html.twig');
+        return $this->redirectToRoute('sortie');
+    }
+
+    /**
+     * @Route ("/sortie/desister/{id}", name="sortie_desister")
+     */
+    public function desisterSortie(SortieRepository $sortieRepository,int $id, EntityManagerInterface $entityManager): RedirectResponse {
+        $sortie = $sortieRepository->find($id);
+        $sortie->removeParticipant($this->getUser());
+        $entityManager->persist($sortie);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('sortie');
     }
 }
