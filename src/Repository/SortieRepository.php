@@ -22,11 +22,15 @@ class SortieRepository extends ServiceEntityRepository
 
     public function searchFilter(Search $search): array
     {
+        $date =new \DateTime();
+        $date->sub(new \DateInterval('P1M'));
 
         $query = $this
             ->createQueryBuilder('s')
             ->select('c', 's')
-            ->join('s.campusOrganisateur', 'c');
+            ->join('s.campusOrganisateur', 'c')
+            ->andWhere('s.dateHeureDebut > :date')
+            ->setParameter('date', $date);
 
         if(!empty($search->campusSearch)){
             $query = $query
