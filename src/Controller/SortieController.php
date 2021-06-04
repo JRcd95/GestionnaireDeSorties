@@ -95,4 +95,12 @@ class SortieController extends AbstractController
 
         return $this->redirectToRoute('sortie');
     }
+
+    /**
+     * @Route ("/sortie/edit/{id}", name="sortie_edit")
+     */
+    public function editSortie( int $id): Response{
+
+        return $this->render('sortie/editSortie.html.twig');
+    }
 }
