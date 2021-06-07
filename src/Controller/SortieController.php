@@ -172,6 +172,19 @@ class SortieController extends AbstractController
             "form" => $formCancel->createView()
         ]);
     }
+
+    /**
+     * @Route ("/sortie/delete/{id}", name="sortie_delete")
+     */
+    public function deleteSortie(Sortie $sortie, EntityManagerInterface $entityManager, Request $request): RedirectResponse {
+
+        if($this->isCsrfTokenValid('token_delete', $request->get('token'))) {
+            $entityManager->remove($sortie);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('sortie');
+    }
 }
 
 
