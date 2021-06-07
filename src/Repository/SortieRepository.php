@@ -6,7 +6,9 @@ use App\Entity\Sortie;
 use App\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
+use function Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Sortie|null find($id, $lockMode = null, $lockVersion = null)
@@ -16,8 +18,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class SortieRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry){
+    private $security;
+
+    public function __construct(ManagerRegistry $registry, Security $security){
         parent::__construct($registry, Sortie::class);
+        $this->security = $security;
     }
 
     public function searchFilter(Search $search): array
@@ -56,10 +61,18 @@ class SortieRepository extends ServiceEntityRepository
                 ->setParameter('fin', $search->dateFinSearch);
         }
 
+        $user = $this->security->getUser();
         if(!empty($search->sortieOrganisee)){
             $query = $query
                 ->andWhere('s.organisateur = :id')
-                ->setParameter('id', 2);
+                ->setParameter('id', $user);
+        }
+
+        if(!empty($search->sortieInscrit)){
+            $query = $query
+                ->join('s.participants', 'p')
+                ->andWhere('p.id = :id')
+                ->setParameter('id', $user);
         }
 
         if(!empty($search->sortiePassee)){
