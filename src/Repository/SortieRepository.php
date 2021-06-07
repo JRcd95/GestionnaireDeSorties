@@ -29,6 +29,7 @@ class SortieRepository extends ServiceEntityRepository
     {
         $date =new \DateTime();
         $date->sub(new \DateInterval('P1M'));
+        $user = $this->security->getUser();
 
         $query = $this
             ->createQueryBuilder('s')
@@ -61,7 +62,6 @@ class SortieRepository extends ServiceEntityRepository
                 ->setParameter('fin', $search->dateFinSearch);
         }
 
-        $user = $this->security->getUser();
         if(!empty($search->sortieOrganisee)){
             $query = $query
                 ->andWhere('s.organisateur = :id')
@@ -75,11 +75,16 @@ class SortieRepository extends ServiceEntityRepository
                 ->setParameter('id', $user);
         }
 
+        if(!empty($search->sortieNonInscrit)){
+            $query = $query
+                ->andWhere(':user NOT MEMBER OF s.participants')
+                ->setParameter('user', $user);
+        }
+
         if(!empty($search->sortiePassee)){
             $query = $query
                 ->andWhere('s.etat = 5');
         }
-
 
 
         return $query->getQuery()->getResult();
