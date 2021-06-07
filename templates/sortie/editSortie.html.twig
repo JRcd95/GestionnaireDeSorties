@@ -91,20 +91,25 @@
             <div class="col-6">
                 </br>
                 </br>
-                <div class="addSortieBtn">
-                    <div class="btn">{{ form_row(formEditSortie.enregistrer) }}</div>
-                    <div class="btn">{{ form_row(formEditSortie.publier) }}</div>
-                    <!-- <button type="submit" class="btn">Enregistrer</button>
-                     <button class="btn">Publier la sortie</button> -->
-                    {% if sortie.etat.id ==1 %}
-                         <button class="btn"><a class="annulerBtn" onclick="return confirm('Etes-vous sûre de supprimer cette sortie ?')" href="{{ path('sortie_delete', {'id': sortie.id, 'token' : csrf_token('token_delete')}) }}">Supprimer</a></button>
-                    {% endif %}
-                    <button class="btn"><a class="annulerBtn" href="{{ path('sortie_annulee', {'id': sortie.id}) }}">Annuler la sortie</a></button>
-                </div>
+                <table>
+                    <tr>
+                        <td>{{ form_row(formEditSortie.enregistrer) }}</td>
+                        <td>{{ form_row(formEditSortie.publier) }}</td>
+                        <td>
+                            {% if sortie.etat.id ==1 %}
+                                <button class="btn"><a class="annulerBtn" onclick="return confirm('Etes-vous sûre de supprimer cette sortie ?')" href="{{ path('sortie_delete', {'id': sortie.id, 'token' : csrf_token('token_delete')}) }}">Supprimer</a></button>
+                            {% endif %}
+                        </td>
+                        <td><button class="btn"><a class="annulerBtn" href="{{ path('sortie_annulee', {'id': sortie.id}) }}">Annuler la sortie</a></button></td>
+                    </tr>
+                </table>
             </div>
             <div class="col-3"></div>
         </div>
         {{ form_end(formEditSortie) }}
+    </br>
+    </br>
+    <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Retour</button>
     </div>
 {% endblock %}
 

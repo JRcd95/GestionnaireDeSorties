@@ -91,17 +91,19 @@
             <div class="col-6">
                 </br>
                 </br>
-                <div class="addSortieBtn">
-                    <div class="btn">{{ form_row(addSortieForm.enregistrer) }}</div>
-                    <div class="btn">{{ form_row(addSortieForm.publier) }}</div>
-                   <!-- <button type="submit" class="btn">Enregistrer</button>
-                    <button class="btn">Publier la sortie</button> -->
-                    <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Retour</button>
-                </div>
+                <table>
+                    <tr>
+                        <td>{{ form_row(addSortieForm.enregistrer) }}</td>
+                        <td>{{ form_row(addSortieForm.publier) }}</td>
+                    </tr>
+                </table>
             </div>
             <div class="col-3"></div>
         </div>
         {{ form_end(addSortieForm) }}
+        </br>
+        </br>
+        <button class="btn" onclick="window.location.href ='{{ path('sortie') }}';">Retour</button>
     </div>
 {% endblock %}
 
