@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Etat;
 use App\Entity\Sortie;
 use App\Form\AddSortieType;
 use App\Form\CancelSortieType;
@@ -18,9 +17,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
-use Symfony\Component\Security\Csrf\CsrfToken;
-use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class SortieController extends AbstractController
 {
@@ -68,6 +64,8 @@ class SortieController extends AbstractController
             $entityManager->persist($sortie);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Félicitation, la sortie est crée !');
+
             return $this->redirectToRoute('sortie');
         }
         return $this->render('sortie/addSortie.html.twig', [
@@ -96,6 +94,8 @@ class SortieController extends AbstractController
             $sortie->addParticipant($this->getUser());
             $entityManager->persist($sortie);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Félicitation, vous vous êtes inscrit à la sortie !');
         }
         return $this->redirectToRoute('sortie');
     }
@@ -109,6 +109,8 @@ class SortieController extends AbstractController
            $sortie->removeParticipant($this->getUser());
            $entityManager->persist($sortie);
            $entityManager->flush();
+
+           $this->addFlash('success', 'Vous êtes bien retiré de la liste des inscrits.');
        }
 
         return $this->redirectToRoute('sortie');
@@ -151,6 +153,7 @@ class SortieController extends AbstractController
             $sortie->setEtat($etat = $entityManager->getRepository('App:Etat')->find(2));
             $entityManager->persist($sortie);
             $entityManager->flush();
+            $this->addFlash('success', 'Félicitation, la sortie vient d\'être publiée !');
         }
 
 
