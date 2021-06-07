@@ -25,8 +25,10 @@
                         <div class="col">
                             {% if app.user %}
                                 <div class="menu-lien">
-                                    <a class="navLink" href="#" title="Villes">Villes</a>
-                                    <a class="navLink" href="#" title="Campus">Campus</a>
+                                    {% if app.user.administrateur %}
+                                        <a class="navLink" href="#" title="Villes">Villes</a>
+                                        <a class="navLink" href="#" title="Campus">Campus</a>
+                                    {% endif %}
                                     <a class="navLink" href="{{path('sortie')}}" title="Home">Accueil</a>
                                     <a class="navLink" href="{{path('participant_edit', {'id': app.user.id})}}" title="Mon profil">Mon profil</a>
                                     <a class="navLink" href="{{path('app_logout')}}" title="Logout">Se déconnecter</a>
