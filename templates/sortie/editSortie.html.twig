@@ -97,7 +97,7 @@
                     <!-- <button type="submit" class="btn">Enregistrer</button>
                      <button class="btn">Publier la sortie</button> -->
                     {% if sortie.etat.id ==1 %}
-                         <button class="btn"><a class="annulerBtn" href="{{ path('sortie_delete', {'id': sortie.id, 'token' : csrf_token('token_delete')}) }}">Supprimer</a></button>
+                         <button class="btn"><a class="annulerBtn" onclick="return confirm('Etes-vous sûre de supprimer cette sortie ?')" href="{{ path('sortie_delete', {'id': sortie.id, 'token' : csrf_token('token_delete')}) }}">Supprimer</a></button>
                     {% endif %}
                     <button class="btn"><a class="annulerBtn" href="{{ path('sortie_annulee', {'id': sortie.id}) }}">Annuler la sortie</a></button>
                 </div>

@@ -144,11 +144,15 @@ class SortieController extends AbstractController
     /**
      * @Route ("/sortie/publier/{id}", name="sortie_publier")
      */
-    public function publierSortie(SortieRepository $sortieRepository, int $id, EntityManagerInterface $entityManager):RedirectResponse {
-        $sortie = $sortieRepository->find($id);
-        $sortie->setEtat($etat= $entityManager->getRepository('App:Etat')->find(2));
-        $entityManager->persist($sortie);
-        $entityManager->flush();
+    public function publierSortie(SortieRepository $sortieRepository, int $id, EntityManagerInterface $entityManager, Request $request):RedirectResponse {
+
+        if($this->isCsrfTokenValid('token_publier', $request->get('token'))) {
+            $sortie = $sortieRepository->find($id);
+            $sortie->setEtat($etat = $entityManager->getRepository('App:Etat')->find(2));
+            $entityManager->persist($sortie);
+            $entityManager->flush();
+        }
+
 
         return $this->redirectToRoute('sortie');
     }
