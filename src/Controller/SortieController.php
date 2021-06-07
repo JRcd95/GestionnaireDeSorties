@@ -18,6 +18,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class SortieController extends AbstractController
 {
@@ -86,23 +89,27 @@ class SortieController extends AbstractController
     /**
      * @Route ("/sortie/sinscrire/{id}", name="sortie_sinscrire")
      */
-    public function sincrireSortie(SortieRepository $sortieRepository,int $id, EntityManagerInterface $entityManager): RedirectResponse {
-        $sortie = $sortieRepository->find($id);
-        $sortie->addParticipant($this->getUser());
-        $entityManager->persist($sortie);
-        $entityManager->flush();
+    public function sincrireSortie(SortieRepository $sortieRepository,int $id, EntityManagerInterface $entityManager, Request $request): RedirectResponse {
 
+        if($this->isCsrfTokenValid('token_inscription', $request->get('token'))){
+            $sortie = $sortieRepository->find($id);
+            $sortie->addParticipant($this->getUser());
+            $entityManager->persist($sortie);
+            $entityManager->flush();
+        }
         return $this->redirectToRoute('sortie');
     }
 
     /**
      * @Route ("/sortie/desister/{id}", name="sortie_desister")
      */
-    public function desisterSortie(SortieRepository $sortieRepository,int $id, EntityManagerInterface $entityManager): RedirectResponse {
-        $sortie = $sortieRepository->find($id);
-        $sortie->removeParticipant($this->getUser());
-        $entityManager->persist($sortie);
-        $entityManager->flush();
+    public function desisterSortie(SortieRepository $sortieRepository,int $id, EntityManagerInterface $entityManager, Request $request): RedirectResponse {
+       if($this->isCsrfTokenValid('token_desistement', $request->get('token'))) {
+           $sortie = $sortieRepository->find($id);
+           $sortie->removeParticipant($this->getUser());
+           $entityManager->persist($sortie);
+           $entityManager->flush();
+       }
 
         return $this->redirectToRoute('sortie');
     }
