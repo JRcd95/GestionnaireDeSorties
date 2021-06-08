@@ -7,23 +7,21 @@
         <h5>Filtrer les sites</h5>
         </br>
         <div class="row">
-            <div class="col-6">
+            <div class="col">
                 <table>
+                    {{ form_start(searchCampusForm) }}
                     <tr>
-                        <th>Le nom contient :</th>
-                        <td>
-                            Mettre en place le filtre
-                        </td>
+                        <th>Le nom du site contient :</th>
+                        <td>{{ form_row(searchCampusForm) }}</td>
                         <td>
                             <button class="btn" type="submit">Rechercher</button>
                         </td>
+                    {{ form_end(searchCampusForm) }}
                 </table>
             </div>
         </div>
-    </div>
-    </br>
-    </br>
-    <div class="container">
+        </br>
+        </br>
         <div class="row">
             <h5>Liste des campus existants :</h5>
             </br>
@@ -39,7 +37,6 @@
                         <tr class="tSortie">
                             <td>{{ camp.nomCampus }}</td>
                             <td>
-                                <a href="#">Modifier</a>
                                 <a href="{{ path('campus_delete', {'id': camp.id, 'token' : csrf_token('token_delete')}) }}" onclick="return confirm('Etes-vous sûre de supprimer cette sortie ?')">Supprimer</a>
                             </td>
                         </tr>

@@ -6,9 +6,11 @@ use App\Repository\CampusRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CampusRepository::class)
+ * @UniqueEntity("nomCampus", message="Ce campus fait déjà partie de la liste")
  */
 class Campus
 {
@@ -33,6 +35,8 @@ class Campus
      * @ORM\OneToMany(targetEntity=Sortie::class, mappedBy="campusOrganisateur")
      */
     private $sorties;
+
+    public $search;
 
     public function __construct()
     {

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Campus;
 use App\Form\CampusType;
+use App\Form\SearchCampusType;
 use App\Repository\CampusRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,10 @@ class CampusController extends AbstractController
      */
     public function gestionCampus(CampusRepository $campusRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $campusSearch= $campusRepository->findAll();
+        $searchCampus = new Campus();
+        $searchCampusForm = $this->createForm(SearchCampusType::class, $searchCampus);
+        $searchCampusForm->handleRequest($request);
+        $listcampus= $campusRepository->searchCampus($searchCampus);
 
         $campus = new Campus();
         $addCampusForm = $this->createForm(CampusType::class, $campus);
@@ -34,7 +38,8 @@ class CampusController extends AbstractController
         }
 
         return $this->render('campus/campus.html.twig', [
-            'campus' => $campusSearch,
+            'campus' => $listcampus,
+            'searchCampusForm' => $searchCampusForm->createView(),
             'addCampusForm' => $addCampusForm->createView()
         ]);
     }
