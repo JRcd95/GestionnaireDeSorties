@@ -36,8 +36,6 @@ class Campus
      */
     private $sorties;
 
-    public $search;
-
     public function __construct()
     {
         $this->participants = new ArrayCollection();

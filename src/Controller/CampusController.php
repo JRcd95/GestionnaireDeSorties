@@ -6,6 +6,7 @@ use App\Entity\Campus;
 use App\Form\CampusType;
 use App\Form\SearchCampusType;
 use App\Repository\CampusRepository;
+use App\Search\Search;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -20,7 +21,7 @@ class CampusController extends AbstractController
      */
     public function gestionCampus(CampusRepository $campusRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $searchCampus = new Campus();
+        $searchCampus = new Search();
         $searchCampusForm = $this->createForm(SearchCampusType::class, $searchCampus);
         $searchCampusForm->handleRequest($request);
         $listCampus= $campusRepository->searchCampus($searchCampus);

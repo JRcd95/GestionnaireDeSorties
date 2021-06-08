@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Campus;
+use App\Search\Search;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,7 +13,7 @@ class SearchCampusType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('search', TextType::class, [
+            ->add('recherche', TextType::class, [
                 'required' => false,
                 'label' => false,
                 'attr' => ['placeholder' => 'Search'
@@ -24,7 +24,7 @@ class SearchCampusType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Campus::class,
+            'data_class' => Search::class,
         ]);
     }
 }

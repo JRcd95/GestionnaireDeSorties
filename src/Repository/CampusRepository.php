@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Campus;
+use App\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,16 +20,16 @@ class CampusRepository extends ServiceEntityRepository
         parent::__construct($registry, Campus::class);
     }
 
-    public function searchCampus(Campus $campus): array{
+    public function searchCampus(Search $search): array{
 
         $query = $this
             ->createQueryBuilder('c')
         ;
 
-        if(!empty($campus->search)){
+        if(!empty($search->recherche)){
             $query = $query
                 ->andWhere('c.nomCampus LIKE :recherche')
-                ->setParameter('recherche', "%{$campus->search}%");
+                ->setParameter('recherche', "%{$search->recherche}%");
         }
 
         return $query->getQuery()->getResult();
