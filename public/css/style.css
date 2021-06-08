@@ -2,15 +2,17 @@
     color: #144A7F;
 }
 .logo {
-    width: 62px;
-    height: 62px;
+    max-width: 62px;
+    max-height: 62px;
+    width: 20%;
+    height: 20%;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
 }
 .navLink {
     color: #144A7F;
-    font-size: x-large;
+    font-size: 150%;
     margin-right: 15px;
 }
 .menu-lien {
@@ -31,8 +33,9 @@
 }
 .card{
 
-    width: 40%;
+    width: 30%;
     min-height: 300px;
+    min-width: 400px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -60,17 +63,6 @@
 }
 main h2{
     color: #144A7F;
-}
-
-.box-form{
-    width: 38%;
-
-    min-height: 200px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
 }
 label{
     color: #343a40;

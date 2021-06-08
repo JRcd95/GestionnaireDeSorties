@@ -41,8 +41,6 @@ class SortieController extends AbstractController
      * @Route ("/sortie/add", name="sortie_add")
      */
     public function addSortie(Request $request, EntityManagerInterface $entityManager, LieuRepository $lieuRepository): Response {
-        $lieu = $lieuRepository->findAll();
-
         $sortie = new Sortie();
 
         $sortie->setOrganisateur($this->getUser());
@@ -64,13 +62,12 @@ class SortieController extends AbstractController
             $entityManager->persist($sortie);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Félicitation, la sortie est crée !');
+            $this->addFlash('success', 'Félicitation, la sortie est créée !');
 
             return $this->redirectToRoute('sortie');
         }
         return $this->render('sortie/addSortie.html.twig', [
-            'addSortieForm' => $addSortieForm->createView(),
-            'lieu' => $lieu
+            'addSortieForm' => $addSortieForm->createView()
         ]);
     }
     /**

@@ -12,145 +12,141 @@
     </br>
     </br>
 <div class="container">
-    <div class="formFiltre">
-        <h5>Filtrer les sorties</h5>
-        </br>
-        {{form_start(searchForm) }}
-        <div class="row">
-            <div class="col-6">
-                <table>
-                    <tr>
-                        <th>Campus :</th>
-                        <td>
-                            {{ form_row(searchForm.campusSearch) }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Le nom de la sortie contient :</th>
-                        <td>
-                            {{ form_row(searchForm.recherche) }}
-                        </td>
-                    </tr>
-                    <tr>
+    <h5>Filtrer les sorties</h5>
+    </br>
+    {{form_start(searchForm) }}
+    <div class="row">
+        <div class="col-6">
+            <table>
+                <tr>
+                    <th>Campus :</th>
+                    <td>
+                        {{ form_row(searchForm.campusSearch) }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Le nom de la sortie contient :</th>
+                    <td>
+                        {{ form_row(searchForm.recherche) }}
+                    </td>
+                </tr>
+                <tr>
 
-                        <th>Entre la date de début et de fin :</th>
-                        <td >
-                            <div class="row">
-                                <div class="col-md-6">{{ form_row(searchForm.dateDebutSearch) }}</div>
-                                <div class="col-md-6">{{ form_row(searchForm.dateFinSearch) }}</div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-4">
-                <table>
-                    <tr>
-                        <th>Autres filtres :</th>
-                    </tr>
-                    <tr>
-                        <td>{{ form_widget(searchForm.sortieOrganisee) }} {{ form_label(searchForm.sortieOrganisee) }}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ form_widget(searchForm.sortieInscrit) }} {{ form_label(searchForm.sortieInscrit) }}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ form_widget(searchForm.sortieNonInscrit) }} {{ form_label(searchForm.sortieNonInscrit) }}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ form_widget(searchForm.sortiePassee) }} {{ form_label(searchForm.sortiePassee) }}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-2 ">
-                </br>
-                </br>
-                </br>
-                <button class="btn btn-lg btn-primary" type="submit">Rechercher</button>
-            </div>
+                    <th>Entre la date de début et de fin :</th>
+                    <td >
+                        <div class="row">
+                            <div class="col-6">{{ form_row(searchForm.dateDebutSearch) }}</div>
+                            <div class="col-6">{{ form_row(searchForm.dateFinSearch) }}</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
-        {{form_end(searchForm) }}
+        <div class="col-4">
+            <table>
+                <tr>
+                    <th>Autres filtres :</th>
+                </tr>
+                <tr>
+                    <td>{{ form_widget(searchForm.sortieOrganisee) }} {{ form_label(searchForm.sortieOrganisee) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_widget(searchForm.sortieInscrit) }} {{ form_label(searchForm.sortieInscrit) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_widget(searchForm.sortieNonInscrit) }} {{ form_label(searchForm.sortieNonInscrit) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_widget(searchForm.sortiePassee) }} {{ form_label(searchForm.sortiePassee) }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-2 ">
+            </br>
+            </br>
+            </br>
+            <button class="btn btn-lg btn-primary" type="submit">Rechercher</button>
+        </div>
     </div>
+    {{form_end(searchForm) }}
 </div>
     </br>
     </br>
 <div class="container">
     <div class="row">
-        <div class="listeSorties">
-            <h5>Liste des sorties :</h5>
-            </br>
-            {% if sorties|length ==0 %}
-                <h6>Aucun résultat ne correspond à votre recherche.</h6>
-            {% else %}
-                <table class="tabSorties">
-                    <tr class="trSortie">
-                        <th>Nom de la sortie</th>
-                        <th>Date de la sortie</th>
-                        <th>Clôture</th>
-                        <th>Inscrits/Places</th>
-                        <th>Etat</th>
-                        <th>Inscrit</th>
-                        <th>Organisateur</th>
-                        <th>Action</th>
-                    </tr>
-                    {% for sortie in sorties %}
-                        <tr class="tSortie">
-                            <td>{{ sortie.nomSortie }}</td>
-                            <td>{{ sortie.dateHeureDebut|format_datetime('short', 'short', locale='fr') }}</td>
-                            <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
-                            <td>
-                                {% if sortie.etat.id == 6 %}
-                                    0/0
-                                {% else %}
-                                    {{ sortie.participants|length}}/{{ sortie.nbInscriptionMax }}
+        <h5>Liste des sorties :</h5>
+        </br>
+        {% if sorties|length ==0 %}
+            <h6>Aucun résultat ne correspond à votre recherche.</h6>
+        {% else %}
+            <table class="tabSorties">
+                <tr class="trSortie">
+                    <th>Nom de la sortie</th>
+                    <th>Date de la sortie</th>
+                    <th>Clôture</th>
+                    <th>Inscrits/Places</th>
+                    <th>Etat</th>
+                    <th>Inscrit</th>
+                    <th>Organisateur</th>
+                    <th>Actions</th>
+                </tr>
+                {% for sortie in sorties %}
+                    <tr class="tSortie">
+                        <td>{{ sortie.nomSortie }}</td>
+                        <td>{{ sortie.dateHeureDebut|format_datetime('short', 'short', locale='fr') }}</td>
+                        <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
+                        <td>
+                            {% if sortie.etat.id == 6 %}
+                                0/0
+                            {% else %}
+                                {{ sortie.participants|length}}/{{ sortie.nbInscriptionMax }}
+                            {% endif %}
+                        </td>
+                        <td>{{ sortie.etat.libelle }}</td>
+                        <td>
+                            {% for p in sortie.participants %}
+                                {% if p.id == app.user.id %}
+                                    X
                                 {% endif %}
-                            </td>
-                            <td>{{ sortie.etat.libelle }}</td>
-                            <td>
-                                {% for p in sortie.participants %}
-                                    {% if p.id == app.user.id %}
-                                        X
-                                    {% endif %}
-                                {% endfor %}
-                            </td>
-                            <td>
-                                {% if sortie.organisateur.id == app.user.id%}
-                                    <a href="{{ path('participant_edit', {'id': sortie.organisateur.id}) }}">{{ sortie.organisateur.pseudo }}</a>
-                                {% else %}
-                                    <a href="{{ path('participant_details', {'id': sortie.organisateur.id}) }}">{{ sortie.organisateur.pseudo }}</a>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% if sortie.organisateur.id == app.user.id%}
+                                <a href="{{ path('participant_edit', {'id': sortie.organisateur.id}) }}">{{ sortie.organisateur.pseudo }}</a>
+                            {% else %}
+                                <a href="{{ path('participant_details', {'id': sortie.organisateur.id}) }}">{{ sortie.organisateur.pseudo }}</a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>
+                            {% if sortie.organisateur.id == app.user.id %}
+                                {% if sortie.etat.id <=2 %}
+                                     <a href="{{ path('sortie_edit', {'id': sortie.id}) }}">Modifier</a>
                                 {% endif %}
-                            </td>
-                            <td>
-                                <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>
-                                {% if sortie.organisateur.id == app.user.id %}
-                                    {% if sortie.etat.id <=2 %}
-                                         <a href="{{ path('sortie_edit', {'id': sortie.id}) }}">Modifier</a>
-                                    {% endif %}
-                                    {% if sortie.etat.id ==1 %}
-                                        <a href="{{ path('sortie_publier', {'id': sortie.id, 'token' : csrf_token('token_publier')}) }}">Publier</a>
-                                    {% endif %}
-                                    {% if sortie.etat.id ==2 %}
-                                        <a href="{{ path('sortie_annulee', {'id': sortie.id}) }}">Annuler</a>
-                                    {% endif %}
-                                {% else %}
-                                    {% if sortie.dateLimiteInscription|date("d/m/Y") > 'now'|date("d/m/Y")%}
-                                        {% if sortie.participants.contains(app.user) %}
-                                            <a href="{{ path('sortie_desister', {'id': sortie.id, 'token' : csrf_token('token_desistement')}) }}">Se désister</a>
-                                        {% else %}
-                                            {% if sortie.etat.id ==2 %}
-                                                    {% if sortie.participants|length < sortie.nbInscriptionMax %}
-                                                            <a href="{{ path('sortie_sinscrire', {'id': sortie.id, 'token' : csrf_token('token_inscription')}) }}">S'inscrire</a>
-                                                    {% endif %}
-                                            {% endif %}
+                                {% if sortie.etat.id ==1 %}
+                                    <a href="{{ path('sortie_publier', {'id': sortie.id, 'token' : csrf_token('token_publier')}) }}">Publier</a>
+                                {% endif %}
+                                {% if sortie.etat.id ==2 %}
+                                    <a href="{{ path('sortie_annulee', {'id': sortie.id}) }}">Annuler</a>
+                                {% endif %}
+                            {% else %}
+                                {% if sortie.dateLimiteInscription|date("d/m/Y") > 'now'|date("d/m/Y")%}
+                                    {% if sortie.participants.contains(app.user) %}
+                                        <a href="{{ path('sortie_desister', {'id': sortie.id, 'token' : csrf_token('token_desistement')}) }}">Se désister</a>
+                                    {% else %}
+                                        {% if sortie.etat.id ==2 %}
+                                                {% if sortie.participants|length < sortie.nbInscriptionMax %}
+                                                        <a href="{{ path('sortie_sinscrire', {'id': sortie.id, 'token' : csrf_token('token_inscription')}) }}">S'inscrire</a>
+                                                {% endif %}
                                         {% endif %}
                                     {% endif %}
                                 {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            {% endif %}
-        </div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
         <div class="creationSortie">
             <button class="btn btn-lg btn-primary" onclick="window.location.href ='{{ path('sortie_add') }}';">Créer une sortie</button>
         </div>
