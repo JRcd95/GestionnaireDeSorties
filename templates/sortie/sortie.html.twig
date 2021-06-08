@@ -120,13 +120,13 @@
                         <td>
                             <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>
                             {% if sortie.organisateur.id == app.user.id %}
-                                {% if sortie.etat.id <=2 %}
+                                {% if sortie.etat.libelle == "Créée" or sortie.etat.libelle == "Publiée" %}
                                      <a href="{{ path('sortie_edit', {'id': sortie.id}) }}">Modifier</a>
                                 {% endif %}
-                                {% if sortie.etat.id ==1 %}
+                                {% if sortie.etat.libelle == "Créée" %}
                                     <a href="{{ path('sortie_publier', {'id': sortie.id, 'token' : csrf_token('token_publier')}) }}">Publier</a>
                                 {% endif %}
-                                {% if sortie.etat.id ==2 %}
+                                {% if sortie.etat.libelle == "Publiée" %}
                                     <a href="{{ path('sortie_annulee', {'id': sortie.id}) }}">Annuler</a>
                                 {% endif %}
                             {% else %}
@@ -134,7 +134,7 @@
                                     {% if sortie.participants.contains(app.user) %}
                                         <a href="{{ path('sortie_desister', {'id': sortie.id, 'token' : csrf_token('token_desistement')}) }}">Se désister</a>
                                     {% else %}
-                                        {% if sortie.etat.id ==2 %}
+                                        {% if sortie.etat.libelle == "Publiée" %}
                                                 {% if sortie.participants|length < sortie.nbInscriptionMax %}
                                                         <a href="{{ path('sortie_sinscrire', {'id': sortie.id, 'token' : csrf_token('token_inscription')}) }}">S'inscrire</a>
                                                 {% endif %}
