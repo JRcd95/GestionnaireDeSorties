@@ -37,7 +37,7 @@
                         <tr class="tSortie">
                             <td>{{ camp.nomCampus }}</td>
                             <td>
-                                <a href="{{ path('campus_delete', {'id': camp.id, 'token' : csrf_token('token_delete')}) }}" onclick="return confirm('Etes-vous sûre de supprimer cette sortie ?')">Supprimer</a>
+                                <a href="{{ path('campus_delete', {'id': camp.id, 'token' : csrf_token('token_delete')}) }}" onclick="return confirm('Etes-vous sûre de supprimer ce campus ?')">Supprimer</a>
                             </td>
                         </tr>
                     {% endfor %}

@@ -26,7 +26,7 @@
                             {% if app.user %}
                                 <div class="menu-lien">
                                     {% if app.user.administrateur %}
-                                        <a class="navLink" href="#" title="Villes">Villes</a>
+                                        <a class="navLink" href="{{path('ville')}}" title="Villes">Villes</a>
                                         <a class="navLink" href="{{path('campus')}}" title="Campus">Campus</a>
                                     {% endif %}
                                     <a class="navLink" href="{{path('sortie')}}" title="Home">Accueil</a>

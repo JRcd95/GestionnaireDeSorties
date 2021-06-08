@@ -23,7 +23,7 @@ class CampusController extends AbstractController
         $searchCampus = new Campus();
         $searchCampusForm = $this->createForm(SearchCampusType::class, $searchCampus);
         $searchCampusForm->handleRequest($request);
-        $listcampus= $campusRepository->searchCampus($searchCampus);
+        $listCampus= $campusRepository->searchCampus($searchCampus);
 
         $campus = new Campus();
         $addCampusForm = $this->createForm(CampusType::class, $campus);
@@ -33,12 +33,12 @@ class CampusController extends AbstractController
             $entityManager->persist($campus);
             $entityManager->flush();
 
-            $this->addFlash('sucess', 'Félicitation, le campus est créé !');
+            $this->addFlash('success', 'Félicitation, le campus est créé !');
             return $this->redirectToRoute('campus');
         }
 
         return $this->render('campus/campus.html.twig', [
-            'campus' => $listcampus,
+            'campus' => $listCampus,
             'searchCampusForm' => $searchCampusForm->createView(),
             'addCampusForm' => $addCampusForm->createView()
         ]);

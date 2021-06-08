@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des villes{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h5>Filtrer les villes</h5>
+        </br>
+        <div class="row">
+            <div class="col">
+                <table>
+                    {{ form_start(searchVilleForm) }}
+                    <tr>
+                        <th>Le nom de la ville contient :</th>
+                        <td>{{ form_row(searchVilleForm.searchVille) }}</td>
+                        <td>
+                            <button class="btn" type="submit">Rechercher</button>
+                        </td>
+                    </tr>
+                    {{ form_end(searchVilleForm) }}
+                </table>
+            </div>
+        </div>
+        </br>
+        </br>
+        <div class="row">
+            <h5>Liste des villes existantes :</h5>
+            </br>
+            {% if villes|length ==0 %}
+                <h6>Aucun résultat ne correspond à votre recherche.</h6>
+            {% else %}
+                <table class="tabSorties">
+                    <tr class="trSortie">
+                        <th>Ville</th>
+                        <th>Code postal</th>
+                        <th>Actions</th>
+                    </tr>
+                    {% for ville in villes %}
+                        <tr class="tSortie">
+                            <td>{{ ville.nomVille }}</td>
+                            <td>{{ ville.codePostal }}</td>
+                            <td>
+                                <a href="{{ path('ville_delete', {'id': ville.id, 'token' : csrf_token('token_delete')}) }}" onclick="return confirm('Etes-vous sûre de supprimer cette ville ?')">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr class="tSortie">
+                        {{ form_start(addVilleForm) }}
+                            <td>{{ form_row(addVilleForm.nomVille) }}</td>
+                            <td>{{ form_row(addVilleForm.codePostal) }}</td>
+                            <td><button type="submit" class="btn">Ajouter</button></td>
+                        {{ form_end(addVilleForm) }}
+                    </tr>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+
