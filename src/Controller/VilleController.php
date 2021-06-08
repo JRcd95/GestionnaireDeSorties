@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Ville;
+use App\Form\SearchType;
 use App\Form\SearchVilleType;
 use App\Form\VilleType;
 use App\Repository\VilleRepository;
+use App\Search\Search;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -20,7 +22,7 @@ class VilleController extends AbstractController
      */
     public function gestionVille(VilleRepository $villeRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $searchVille = new Ville();
+        $searchVille = new Search();
         $searchVilleForm = $this->createForm(SearchVilleType::class, $searchVille);
         $searchVilleForm->handleRequest($request);
         $listVille = $villeRepository->searchVille($searchVille);

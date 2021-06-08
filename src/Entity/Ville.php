@@ -41,8 +41,6 @@ class Ville
      */
     private $lieux;
 
-    public $searchVille;
-
     public function __construct()
     {
         $this->lieux = new ArrayCollection();
