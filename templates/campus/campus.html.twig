@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des campus{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h5>Filtrer les sites</h5>
+        </br>
+        <div class="row">
+            <div class="col-6">
+                <table>
+                    <tr>
+                        <th>Le nom contient :</th>
+                        <td>
+                            Mettre en place le filtre
+                        </td>
+                        <td>
+                            <button class="btn" type="submit">Rechercher</button>
+                        </td>
+                </table>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <div class="container">
+        <div class="row">
+            <h5>Liste des campus existants :</h5>
+            </br>
+            {% if campus|length ==0 %}
+                <h6>Aucun résultat ne correspond à votre recherche.</h6>
+            {% else %}
+                <table class="tabSorties">
+                    <tr class="trSortie">
+                        <th>Campus</th>
+                        <th>Actions</th>
+                    </tr>
+                    {% for camp in campus %}
+                        <tr class="tSortie">
+                            <td>{{ camp.nomCampus }}</td>
+                            <td>
+                                <a href="#">Modifier</a>
+                                <a href="{{ path('campus_delete', {'id': camp.id, 'token' : csrf_token('token_delete')}) }}" onclick="return confirm('Etes-vous sûre de supprimer cette sortie ?')">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr class="tSortie">
+                        {{ form_start(addCampusForm) }}
+                            <td>{{ form_row(addCampusForm.nomCampus) }}</td>
+                            <td><button type="submit" class="btn">Ajouter</button></td>
+                        {{ form_end(addCampusForm) }}
+                    </tr>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+
