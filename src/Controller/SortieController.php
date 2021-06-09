@@ -75,7 +75,10 @@ class SortieController extends AbstractController
      */
     public function detailSortie(SortieRepository $sortieRepository, int $id): Response{
         $sortie = $sortieRepository->find($id);
-
+        if(!$sortie){
+            $this->addFlash('echec', 'La sortie n\'existe pas');
+            return $this->redirectToRoute('sortie');
+        }
         return $this->render('sortie/detailSortie.html.twig', [
             "sortie" => $sortie
         ]);

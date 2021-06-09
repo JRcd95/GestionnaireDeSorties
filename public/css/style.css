@@ -153,9 +153,16 @@ h6{
     margin-left: 60px;
 }
 
-.flash {
+.flash-success {
     font-weight: bold;
     color: darkseagreen;
+    padding-left: 5%;
+    font-size: 1.4rem;
+}
+
+.flash-echec {
+    font-weight: bold;
+    color: #bb2d3b;
     padding-left: 5%;
     font-size: 1.4rem;
 }

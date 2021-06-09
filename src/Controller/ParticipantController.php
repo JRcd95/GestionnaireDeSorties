@@ -51,7 +51,10 @@ class ParticipantController extends AbstractController
      */
     public function detailSortie(ParticipantRepository $participantRepository, int $id): Response{
         $participant = $participantRepository->find($id);
-
+        if(!$participant){
+            $this->addFlash('echec', 'Le participant n\'existe pas');
+            return $this->redirectToRoute('sortie');
+        }
         return $this->render('participant/detailparticipant.html.twig', [
             "participant" => $participant
         ]);
