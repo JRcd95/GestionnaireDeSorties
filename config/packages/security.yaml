@@ -45,4 +45,7 @@ security:
     access_control:
         - { path: ^/ville, roles: ROLE_ADMIN }
         - { path: ^/campus, roles: ROLE_ADMIN }
-        #- { path: ^/public, roles: ROLE_USER }
+        - { path: ^/sorties, roles: ROLE_USER }
+        - { path: ^/sortie, roles: ROLE_USER }
+        - { path: ^/participants, roles: ROLE_USER }
+        - { path: ^/participant, roles: ROLE_USER }
