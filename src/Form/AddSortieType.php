@@ -76,7 +76,7 @@ class AddSortieType extends AbstractType
                     'choices' => $lieux,
                     'choice_label'=> 'nomLieu',
                     'label' => false,
-                    'placeholder' => "--Sélectionner en premier une ville--",
+                    'placeholder' => "--Lieu--",
                     'required' => false
                 ]);
             };
