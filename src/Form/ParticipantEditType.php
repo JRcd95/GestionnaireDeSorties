@@ -42,6 +42,7 @@ class ParticipantEditType extends AbstractType
                 ],
                 'second_options' => [
                     'label' => false,
+                    'required' => false,
                     'attr' => [
                         'maxlength' => 50
                     ]
