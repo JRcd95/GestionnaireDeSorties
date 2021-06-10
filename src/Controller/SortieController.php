@@ -75,7 +75,7 @@ class SortieController extends AbstractController
      */
     public function detailSortie(SortieRepository $sortieRepository, int $id): Response{
         $sortie = $sortieRepository->find($id);
-        if(!$sortie){
+        if($sortie == null){
             $this->addFlash('echec', 'La sortie n\'existe pas');
             return $this->redirectToRoute('sortie');
         }
@@ -87,15 +87,22 @@ class SortieController extends AbstractController
     /**
      * @Route ("/sortie/sinscrire/{id}", name="sortie_sinscrire")
      */
-    public function sincrireSortie(SortieRepository $sortieRepository,int $id, EntityManagerInterface $entityManager, Request $request): RedirectResponse {
+    public function sincrireSortie(SortieRepository $sortieRepository,int $id, EntityManagerInterface $entityManager, Request $request, Sortie $sortie): RedirectResponse {
 
         if($this->isCsrfTokenValid('token_inscription', $request->get('token'))){
             $sortie = $sortieRepository->find($id);
-            $sortie->addParticipant($this->getUser());
-            $entityManager->persist($sortie);
-            $entityManager->flush();
+            if($sortie == null){
+                $this->addFlash('echec', 'La sortie n\'existe pas');
+            }
+            if ($sortie->getParticipants()->count() < $sortie->getNbInscriptionMax()) {
+                $sortie->addParticipant($this->getUser());
+                $entityManager->persist($sortie);
+                $entityManager->flush();
 
-            $this->addFlash('success', 'Félicitation, vous vous êtes inscrit à la sortie !');
+                $this->addFlash('success', 'Félicitation, vous vous êtes inscrit à la sortie !');
+            } else {
+                $this->addFlash('echec', 'Le nombre maximum de participant est atteint');
+            }
         }
         return $this->redirectToRoute('sortie');
     }
@@ -104,15 +111,23 @@ class SortieController extends AbstractController
      * @Route ("/sortie/desister/{id}", name="sortie_desister")
      */
     public function desisterSortie(SortieRepository $sortieRepository,int $id, EntityManagerInterface $entityManager, Request $request): RedirectResponse {
+
        if($this->isCsrfTokenValid('token_desistement', $request->get('token'))) {
            $sortie = $sortieRepository->find($id);
-           $sortie->removeParticipant($this->getUser());
-           $entityManager->persist($sortie);
-           $entityManager->flush();
+           if($sortie == null){
+               $this->addFlash('echec', 'La sortie n\'existe pas');
+           }
+           $today = new \DateTime();
+           if ($today < $sortie->getDateLimiteInscription()){
+               $sortie->removeParticipant($this->getUser());
+               $entityManager->persist($sortie);
+               $entityManager->flush();
 
-           $this->addFlash('success', 'Vous êtes bien retiré de la liste des inscrits.');
+               $this->addFlash('success', 'Vous êtes bien retiré de la liste des inscrits.');
+           } else {
+               $this->addFlash('echec', 'La date limite d\'inscription est dépassée');
+           }
        }
-
         return $this->redirectToRoute('sortie');
     }
 
@@ -150,13 +165,18 @@ class SortieController extends AbstractController
 
         if($this->isCsrfTokenValid('token_publier', $request->get('token'))) {
             $sortie = $sortieRepository->find($id);
-            $sortie->setEtat($etat = $entityManager->getRepository('App:Etat')->find(2));
-            $entityManager->persist($sortie);
-            $entityManager->flush();
-            $this->addFlash('success', 'Félicitation, la sortie vient d\'être publiée !');
+            if($sortie == null){
+                $this->addFlash('echec', 'La sortie n\'existe pas');
+            }
+            if ($sortie->getEtat()->getId() == 1) {
+                $sortie->setEtat($etat = $entityManager->getRepository('App:Etat')->find(2));
+                $entityManager->persist($sortie);
+                $entityManager->flush();
+                $this->addFlash('success', 'Félicitation, la sortie vient d\'être publiée !');
+            } else {
+                $this->addFlash('echec', 'La sortie a déjà été publiée');
+            }
         }
-
-
         return $this->redirectToRoute('sortie');
     }
 
