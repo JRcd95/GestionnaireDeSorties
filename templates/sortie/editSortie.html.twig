@@ -98,9 +98,10 @@
                         <td>
                             {% if sortie.etat.id ==1 %}
                                 <button class="btn"><a class="annulerBtn" onclick="return confirm('Etes-vous sûre de supprimer cette sortie ?')" href="{{ path('sortie_delete', {'id': sortie.id, 'token' : csrf_token('token_delete')}) }}">Supprimer</a></button>
+                            {% else %}
+                                 <button class="btn"><a class="annulerBtn" href="{{ path('sortie_annulee', {'id': sortie.id}) }}">Annuler la sortie</a></button>
                             {% endif %}
                         </td>
-                        <td><button class="btn"><a class="annulerBtn" href="{{ path('sortie_annulee', {'id': sortie.id}) }}">Annuler la sortie</a></button></td>
                     </tr>
                 </table>
             </div>
