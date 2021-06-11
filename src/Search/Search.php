@@ -2,7 +2,6 @@
 namespace App\Search;
 
 use App\Entity\Campus;
-use App\Entity\Sortie;
 use DateTime;
 
 class Search {

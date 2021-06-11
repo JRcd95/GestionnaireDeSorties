@@ -25,11 +25,11 @@ class SortieController extends AbstractController
      */
     public function list(SortieRepository $sortieRepository, Search $search, Request $request): Response
     {
-
         $searchForm = $this->createForm(SearchType::class, $search);
         $searchForm->handleRequest($request);
 
         $sorties = $sortieRepository->searchFilter($search);
+
         return $this->render('sortie/sortie.html.twig', [
             'searchForm' => $searchForm->createView(),
             'sorties' => $sorties
