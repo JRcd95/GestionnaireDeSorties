@@ -111,11 +111,7 @@
                             {% endfor %}
                         </td>
                         <td>
-                            {% if sortie.organisateur.id == app.user.id%}
-                                <a href="{{ path('participant_edit', {'id': sortie.organisateur.id}) }}">{{ sortie.organisateur.pseudo }}</a>
-                            {% else %}
-                                <a href="{{ path('participant_details', {'id': sortie.organisateur.id}) }}">{{ sortie.organisateur.pseudo }}</a>
-                            {% endif %}
+                            <a href="{{ path('participant_details', {'id': sortie.organisateur.id}) }}">{{ sortie.organisateur.pseudo }}</a>
                         </td>
                         <td>
                             <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>

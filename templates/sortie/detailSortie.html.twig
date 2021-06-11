@@ -71,7 +71,7 @@
             {% if app.user.id == sortie.organisateur.id %}
                 <h6>Vous proposez cette sortie</h6>
             {% else %}
-                <h6>Cette sortie vous est proposée par <a href="#">{{ sortie.organisateur.pseudo }}</a></h6>
+                <h6>Cette sortie vous est proposée par <a href="{{ path('participant_details', {'id': sortie.organisateur.id}) }}">{{ sortie.organisateur.pseudo }}</a></h6>
             {% endif %}
 
             {% if sortie.etat.id ==6 %}
