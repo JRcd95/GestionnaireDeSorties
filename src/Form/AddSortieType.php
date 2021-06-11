@@ -47,7 +47,7 @@ class AddSortieType extends AbstractType
             ->add('infosSortie', TextareaType::class, [
                 'label' => false
             ])
-            ->add('ville', EntityType::class, [
+            /*->add('ville', EntityType::class, [
                 'mapped'=> false,
                 'class'=> Ville::class,
                 'choice_label'=> 'nomVille',
@@ -57,6 +57,12 @@ class AddSortieType extends AbstractType
             ->add('lieu', ChoiceType::class, [
                 'label' => false,
                 'placeholder' => "--Sélectionner en premier une ville--"
+
+            ])*/
+            ->add('lieu', EntityType::class, [
+                'class' => Lieu::class,
+                'label' => false,
+                'placeholder' => "--Lieu--"
 
             ])
             ->add('enregistrer', SubmitType::class, [
@@ -69,7 +75,7 @@ class AddSortieType extends AbstractType
             ])
         ;
 
-        $formModifier = function (FormInterface $form, Ville $ville=null){
+        /*$formModifier = function (FormInterface $form, Ville $ville=null){
                 $lieux = ($ville === null) ? [] : $ville->getLieux();
                 $form->add('lieu', EntityType::class, [
                     'class'=> Lieu::class,
@@ -79,15 +85,15 @@ class AddSortieType extends AbstractType
                     'placeholder' => "--Lieu--",
                     'required' => false
                 ]);
-            };
+            };*/
 
-        $builder->get('ville')->addEventListener(
+        /*$builder->get('ville')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) use ($formModifier){
                 $ville = $event->getForm()->getData();
                 $formModifier($event->getForm()->getParent(), $ville);
             }
-        );
+        );*/
     }
 
     public function configureOptions(OptionsResolver $resolver)

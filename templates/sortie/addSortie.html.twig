@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <th>Ville :</th>
-                        <td>{{ form_row(addSortieForm.ville) }}</td>
+                        <td>{#{{ form_row(addSortieForm.ville) }}#}</td>
                     </tr>
                     <tr>
                         <th>Lieu :</th>
@@ -107,7 +107,7 @@
     </div>
 {% endblock %}
 
-{% block javascripts %}
+{#{% block javascripts %}
     <script>
         window.onload = () => {
             let ville = document.querySelector("#add_sortie_ville");
@@ -132,6 +132,6 @@
             })
         }
     </script>
-{% endblock %}
+{% endblock %}#}
 
 
