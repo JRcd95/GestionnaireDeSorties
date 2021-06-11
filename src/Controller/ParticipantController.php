@@ -39,7 +39,7 @@ class ParticipantController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('sortie');
         }
-
+        $entityManager->refresh($user);
         return $this->render('participant/edit.html.twig', [
             "user" => $user,
             "form" => $form->createView()

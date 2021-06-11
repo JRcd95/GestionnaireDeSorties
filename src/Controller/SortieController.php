@@ -87,7 +87,7 @@ class SortieController extends AbstractController
     /**
      * @Route ("/sortie/sinscrire/{id}", name="sortie_sinscrire")
      */
-    public function sincrireSortie(SortieRepository $sortieRepository,int $id, EntityManagerInterface $entityManager, Request $request, Sortie $sortie): RedirectResponse {
+    public function sincrireSortie(SortieRepository $sortieRepository,int $id, EntityManagerInterface $entityManager, Request $request): RedirectResponse {
 
         if($this->isCsrfTokenValid('token_inscription', $request->get('token'))){
             $sortie = $sortieRepository->find($id);
